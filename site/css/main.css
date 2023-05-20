@@ -44,3 +44,18 @@ h2 {
 #legend {
   margin-top: 1em;
 }
+
+.legend-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.legend-color {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 9999px;
+  margin-top: 1px;
+}
