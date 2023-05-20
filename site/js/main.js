@@ -18,23 +18,10 @@ const g = svg
   .attr('stroke-width', initStroke);
 
 const onZoom = (e) => {
-  let zoomLevel = e.transform.k;
-  let strokeWidth;
-  if (zoomLevel < 8) {
-    strokeWidth = initStroke;
-  } else {
-    // Super zoomed-in, can use some detail
-    strokeWidth = 0.9;
-
-    // renderPoints();
-  }
-
-  g.attr('transform', e.transform)
-    .transition(300)
-    .attr('stroke-width', strokeWidth);
+  g.attr('transform', e.transform);
   d3.select('#zoom-level').text(`${e.transform.k.toFixed(2)}x`);
 };
-let zoom = d3.zoom().scaleExtent([1, 15]).on('zoom', onZoom);
+let zoom = d3.zoom().scaleExtent([1, 25]).on('zoom', onZoom);
 
 // Initialize zoom
 svg.call(zoom);
@@ -94,12 +81,14 @@ d3.selectAll('.legend-item')
   .append('span')
   .text((d) => d[0]);
 
-const renderPoints = () => {
-  g.selectAll('path')
+const renderPoints = (r) => {
+  g.selectAll('circle')
     .data(points)
-    .join('path')
-    .attr('d', (d) => `M${d[1][0]},${d[1][1]}Z`)
-    .attr('stroke', (d) => {
+    .join('circle')
+    .attr('cx', (d) => d[1][0])
+    .attr('cy', (d) => d[1][1])
+    .attr('r', r)
+    .attr('fill', (d) => {
       const artistID = d[0];
       const mainGenre = artistData[artistID]['main_genre'];
 
@@ -107,7 +96,7 @@ const renderPoints = () => {
     });
 };
 
-renderPoints();
+renderPoints(0.3);
 
 // Figure out what .join actually does (enter, exit, etc.)
 // https://www.d3indepth.com/zoom-and-pan/
