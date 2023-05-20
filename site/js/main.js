@@ -1,7 +1,9 @@
 // Initialize the svg
 let width = 720,
   height = 720;
+
 let initStroke = 1;
+let prevZoom = 1;
 
 const svg = d3
   .select('#visualization')
@@ -17,9 +19,24 @@ const g = svg
   .attr('stroke-linecap', 'round')
   .attr('stroke-width', initStroke);
 
-const onZoom = (e) => {
+const onZoom = async (e) => {
+  const zoomLevel = e.transform.k;
+  const threshold = 5;
+
+  if (zoomLevel > threshold && prevZoom <= threshold) {
+    // Surpassed threshold
+    g.selectAll('image')
+      .transition(300)
+      .style('opacity', 1)
+      .style('display', '');
+  } else if (zoomLevel <= threshold && prevZoom > threshold) {
+    // De-surpassed threshold
+    await g.selectAll('image').style('display', 'none');
+  }
+  prevZoom = zoomLevel;
+
   g.attr('transform', e.transform);
-  d3.select('#zoom-level').text(`${e.transform.k.toFixed(2)}x`);
+  d3.select('#zoom-level').text(`${zoomLevel.toFixed(2)}x`);
 };
 let zoom = d3.zoom().scaleExtent([1, 25]).on('zoom', onZoom);
 
@@ -31,10 +48,10 @@ let points = Object.entries(await d3.json('data/2.5k_pca_log.json')).slice(
   0,
   2500
 );
+// TODO: cache this up in localStorage, it's only ~1MB
 let artistData = await d3.json('data/2.5k_artist_data.json');
-console.log('artistData obtained!');
-// TODO: cache this up, it's only ~1MB
 
+// Colors
 // TODO: don't hard-code this
 const topGenres = [
   'other',
@@ -74,19 +91,70 @@ d3.selectAll('.legend-item')
   .append('span')
   .text((d) => d[0]);
 
-const renderPoints = (r) => {
-  g.selectAll('circle')
-    .data(points)
-    .join('circle')
-    .attr('cx', (d) => d[1][0])
-    .attr('cy', (d) => d[1][1])
-    .attr('r', r)
-    .attr('fill', (d) => {
-      const artistID = d[0];
-      const mainGenre = artistData[artistID]['main_genre'];
+// Main rendering
+let avatar_size = 0.5;
 
-      return genreColor(mainGenre);
+// Universal clip path for images
+g.append('clipPath')
+  .attr('id', 'avatarClipObj')
+  .append('circle')
+  .attr('cx', avatar_size / 2)
+  .attr('cy', avatar_size / 2)
+  .attr('r', avatar_size / 2);
+
+// Tooltip element
+let tooltip = d3.select('#tooltip');
+
+window.renderPoints = (r) => {
+  g.style('opacity', 0);
+
+  g.selectAll('g')
+    .data(points)
+    .join('g')
+    .attr('transform', (d) => `translate(${d[1][0]},${d[1][1]})`)
+    .each(function (d) {
+      const artistID = d[0];
+      const data = artistData[artistID];
+      const mainGenre = data['main_genre'];
+      const avatarURL = data['images'][2]?.url;
+      data['bio'] = data['bio'];
+
+      d3.select(this)
+        .append('circle')
+        .attr('r', r)
+        .attr('fill', genreColor(mainGenre))
+        .on('mouseover', function (e) {
+          tooltip.select('.title').text(data['name']);
+          tooltip.select('.bio').html(data['bio']);
+          tooltip.style('visibility', '');
+          return tooltip.transition(300).style('opacity', 1);
+        })
+        .on('mousemove', function (e) {
+          return tooltip
+            .style('top', e.pageY - 10 + 'px')
+            .style('left', e.pageX + 10 + 'px');
+        })
+        .on('mouseout', async function (e) {
+          await tooltip.transition(300).style('opacity', 0).end();
+          tooltip.style('visibility', 'hidden');
+        });
+
+      if (!avatarURL) return;
+      d3.select(this)
+        .append('image')
+        .attr('xlink:href', avatarURL)
+        .style('opacity', 0)
+        .style('display', 'none')
+        .attr('width', avatar_size)
+        .attr('height', avatar_size)
+        .attr('transform', `translate(${-avatar_size / 2},${-avatar_size / 2})`)
+        .attr('preserveAspectRatio', 'xMidYMid slice')
+        .attr('clip-path', 'url(#avatarClipObj)')
+        .attr('pointer-events', 'none');
     });
+
+  console.log('loaded');
+  g.transition(300).style('opacity', 1);
 };
 
 renderPoints(0.3);
