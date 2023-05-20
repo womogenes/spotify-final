@@ -64,7 +64,12 @@ const topGenres = [
   'contemporary country',
   'alternative metal',
 ];
-let genreColor = d3.scaleOrdinal(['#ffffff00', ...d3.schemeCategory10]);
+let genreColor = d3.scaleOrdinal([
+  '#dddddd80',
+  '#fcba03',
+  '#32a852',
+  ...d3.schemeCategory10,
+]);
 genreColor.domain(topGenres);
 let genreLegend = genreColor.domain().map((x) => [x, genreColor(x)]);
 

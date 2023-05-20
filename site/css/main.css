@@ -40,3 +40,7 @@ h2 {
   padding: 1em;
   min-width: 200px;
 }
+
+#legend {
+  margin-top: 1em;
+}
