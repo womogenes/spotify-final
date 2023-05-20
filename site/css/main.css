@@ -1,6 +1,7 @@
 body,
 html {
   height: 100%;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
@@ -15,7 +16,27 @@ main {
   align-items: center;
 }
 
+h2 {
+  margin: 0;
+}
+
+#content-container {
+  display: flex;
+  gap: 20px;
+}
+
 #visualization {
-  box-shadow: #00000080 0 0 20px -5px;
+  border: 1px solid #00000040;
+  border-radius: 5px;
+}
+
+#visualization svg {
+  display: block;
+}
+
+#debug-box {
+  border: 1px solid #00000040;
   border-radius: 10px;
+  padding: 1em;
+  min-width: 200px;
 }

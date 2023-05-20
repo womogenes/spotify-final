@@ -2,10 +2,11 @@
 # Needed because some of the existing JSON has whitespace to be human-readable
 
 import json
-import os
 
 files_to_minify = ["2.5k_artist_data.json",
-                   "2.5k_id2name.json", "2.5k_pca_log.json", "2.5k_artist_freq.json"]
+                   "2.5k_id2name.json",
+                   "2.5k_pca_log.json",
+                   "2.5k_artist_freq.json"]
 
 for file in files_to_minify:
     print(f"Minifying {file}...")
