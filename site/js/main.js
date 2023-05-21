@@ -82,18 +82,16 @@ let artistData = await d3.json('data/2.5k_artist_data.json');
 // TODO: don't hard-code this
 const topGenres = [
   'other',
-  'rock',
-  'pop',
-  'classic rock',
-  'rap',
-  'dance pop',
-  'album rock',
-  'modern rock',
-  'indietronica',
   'hip hop',
-  'soft rock',
-  'contemporary country',
-  'alternative metal',
+  'rap',
+  'pop',
+  'edm',
+  'indie',
+  'soul',
+  'rock',
+  'metal',
+  'country',
+  'christian',
 ];
 let genreColor = d3.scaleOrdinal([
   '#dddddd80',
