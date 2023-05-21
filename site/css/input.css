@@ -1,0 +1,20 @@
+/* Finally component-izing!
+   Custom input elements
+*/
+
+input {
+  font-family: 'Inter', sans-serif;
+  box-sizing: content-box;
+
+  padding: 0.5em;
+  font-size: 100%;
+  border-radius: 10px;
+
+  border: 1px solid #ddd;
+  outline: none;
+  box-shadow: #00000040 0px 2px 5px -2px;
+}
+
+input:focus-visible {
+  border: 1px solid #888;
+}

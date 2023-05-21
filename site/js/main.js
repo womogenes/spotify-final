@@ -57,6 +57,18 @@ const zoom = d3.zoom().scaleExtent([0.75, 40]).on('zoom', onZoom);
 // Initialize zoom
 svg.call(zoom);
 
+window.onSearchSubmit = (name) => {
+  if (!name) return;
+
+  // Name passed via Alpine magic
+  let obj = Object.entries(artistData).find(([id, data]) =>
+    data['name'].toLowerCase().includes(name.toLowerCase())
+  );
+  if (!obj) return; // Not found
+
+  zoomToArtist(obj[0]);
+};
+
 window.zoomToArtist = (id) => {
   // Utility function for zooming to artist
   // https://observablehq.com/@d3/programmatic-zoom
@@ -109,7 +121,7 @@ window.zoomToArtist = (id) => {
 const pointsObj = { ...(await d3.json('data/2.5k_pca_log.json')) };
 const points = Object.entries(pointsObj).slice(0, N);
 // TODO: cache this up in localStorage, it's only ~1MB
-let artistData = await d3.json('data/2.5k_artist_data.json');
+const artistData = await d3.json('data/2.5k_artist_data.json');
 
 // Colors
 // TODO: don't hard-code this

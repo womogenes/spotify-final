@@ -81,7 +81,8 @@ a:hover {
   /* backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); */
 
-  box-shadow: #00000040 0px 2px 10px -2px;
+  border: 1px solid #00000020;
+  box-shadow: #00000040 0px 2px 5px -2px;
   border-radius: 10px;
 }
 
@@ -124,7 +125,8 @@ a:hover {
   /* backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); */
 
-  box-shadow: #00000040 0px 2px 10px -2px;
+  border: 1px solid #00000020;
+  box-shadow: #00000040 0px 2px 5px -2px;
   border-radius: 5px;
   pointer-events: none;
 }
@@ -161,7 +163,8 @@ a:hover {
   background-color: #fff;
   /* backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px); */
-  box-shadow: #00000040 0px 2px 10px -2px;
+  border: 1px solid #00000020;
+  box-shadow: #00000040 0px 2px 5 -2px;
   border-radius: 5px;
 }
 
@@ -231,7 +234,6 @@ a:hover {
 
   background-color: #fff;
   /* backdrop-filter: blur(20px); */
-  border: 1px solid #00000020;
   border-radius: 5px;
 }
 
@@ -241,4 +243,37 @@ a:hover {
 
 #title-container p {
   margin: 0;
+}
+
+/* Search container */
+#search-container {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+
+  position: absolute;
+  left: 2em;
+  bottom: 2em;
+
+  border-radius: 10px;
+}
+
+#search-container .search-button {
+  width: 38px;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+
+  background-color: #2576e8;
+  color: #fff;
+}
+#search-container .search-button:hover {
+  background-color: #428df5;
+}
+#search-container .search-button:active {
+  background-color: #206fdd;
+}
+#search-container .search-button:disabled {
+  background-color: #ddd;
 }
