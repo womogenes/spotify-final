@@ -30,3 +30,8 @@ for artist_id, data in tqdm(artist_data.items()):
 
 with open("./data/2.5k_artist_data.json", "w") as fout:
     json.dump(artist_data, fout, indent=2)
+
+with open("./data/all_genre_freq.csv", "w") as fout:
+    fout.write("genre,freq\n")
+    for genre, freq in genre_freq:
+        fout.write(f"{genre},{freq}\n")

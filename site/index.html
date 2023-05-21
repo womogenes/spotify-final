@@ -41,12 +41,8 @@
           </div>
         </div>
 
-        <div
-          id="debug-box"
-          x-data="{ expanded: false }"
-          @click="expanded = !expanded"
-        >
-          <h2>Debug box</h2>
+        <div id="debug-box" x-data="{ expanded: true }">
+          <h2 @click="expanded = !expanded">Debug box</h2>
 
           <div x-show="expanded" x-collapse>
             <p>Zoom: <span id="zoom-level">1x</span></p>

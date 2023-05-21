@@ -1,7 +1,6 @@
 import { luma, mobileCheck } from './utils.js';
 
 let initStroke = 1;
-let prevZoom = 1;
 
 // Initialize the svg
 const svg = d3
@@ -14,39 +13,68 @@ const svg = d3
 
 const g = svg
   .append('g')
-  .attr('fill', 'none')
   .attr('stroke-linecap', 'round')
   .attr('stroke-width', initStroke);
+
+const getCurTransform = () => {
+  // Grab current transform
+  let curX, curY, curScale;
+  const { baseVal } = g.node().transform;
+  if (baseVal.length > 0) {
+    const { matrix } = baseVal.getItem(0);
+    (curX = matrix.e), (curY = matrix.f);
+  } else {
+    (curX = 0), (curY = 0);
+  }
+  curScale = baseVal.length >= 1 ? baseVal.getItem(1).matrix.a : 1;
+
+  return [curX, curY, curScale];
+};
 
 const onZoom = async (e) => {
   const zoomLevel = e.transform.k;
   const threshold = 5;
+  const [, , prevZoom] = getCurTransform();
 
   if (zoomLevel > threshold && prevZoom <= threshold) {
     // Surpassed threshold
     g.selectAll('image')
-      .transition(300)
+      .transition(100)
       .style('opacity', 1)
       .style('display', '');
   } else if (zoomLevel <= threshold && prevZoom > threshold) {
     // De-surpassed threshold
-    await g.selectAll('image').style('display', 'none');
+    g.selectAll('image').style('opacity', 0).style('display', 'none');
   }
-  prevZoom = zoomLevel;
 
   g.attr('transform', e.transform);
   d3.select('#zoom-level').text(`${zoomLevel.toFixed(2)}x`);
 };
-let zoom = d3.zoom().scaleExtent([1, 25]).on('zoom', onZoom);
+
+const zoom = d3.zoom().scaleExtent([1, 25]).on('zoom', onZoom);
 
 // Initialize zoom
 svg.call(zoom);
 
+window.zoomToArtist = (id) => {
+  // Utility function for zooming to artist
+  // https://observablehq.com/@d3/programmatic-zoom
+  let toTransform = pointsObj[id];
+
+  svg
+    .transition()
+    .delay(250)
+    .duration(1500)
+    .call(
+      zoom.transform,
+      d3.zoomIdentity.scale(10).translate(-toTransform[0], -toTransform[1]),
+      [toTransform[0], toTransform[1]]
+    );
+};
+
 // Get the data
-let points = Object.entries(await d3.json('data/2.5k_pca_log.json')).slice(
-  0,
-  2500
-);
+const pointsObj = { ...(await d3.json('data/2.5k_pca_log.json')) };
+const points = Object.entries(pointsObj).slice(0, 2500);
 // TODO: cache this up in localStorage, it's only ~1MB
 let artistData = await d3.json('data/2.5k_artist_data.json');
 
@@ -81,7 +109,22 @@ d3.select('#legend')
   .selectAll('div')
   .data(genreLegend)
   .join('div')
-  .attr('class', 'legend-item');
+  .attr('class', 'legend-item')
+  .on('mouseover', function (e, d) {
+    d3.select(this).style('background-color', '#00000020');
+    g.selectAll('g').each(function (itemData) {
+      if (artistData[itemData[0]]['main_genre'] !== d[0]) {
+        d3.select(this).attr('opacity', 0.05);
+      }
+    });
+  })
+  .on('mouseout', function (e) {
+    d3.select(this).style('background-color', '');
+    g.selectAll('g').each(function () {
+      d3.select(this).attr('opacity', 1);
+    });
+  });
+
 d3.selectAll('.legend-item')
   .append('span')
   .attr('class', 'legend-color')
@@ -119,7 +162,9 @@ window.renderPoints = (r) => {
     .data(points)
     .join('g')
     .attr('transform', (d) => `translate(${d[1][0]},${d[1][1]})`)
+    .attr('id', (d) => `g_${d[0]}`)
     .each(function (d) {
+      // Construct circle and image
       const artistID = d[0];
       const data = artistData[artistID];
       const mainGenre = data['main_genre'];
@@ -130,7 +175,7 @@ window.renderPoints = (r) => {
         .append('circle')
         .attr('r', r)
         .attr('fill', genreColor(mainGenre))
-        .on('mouseover', function (e) {
+        .on('mouseover', (e) => {
           tooltip.select('.title').text(data['name']);
           tooltip.style('display', 'block');
           tooltip
@@ -155,8 +200,11 @@ window.renderPoints = (r) => {
 
           return tooltip.transition(300).style('opacity', 1);
         })
-        .on('mouseout', function (e) {
+        .on('mouseout', (e) => {
           tooltip.transition(300).style('opacity', 0);
+        })
+        .on('click', (e) => {
+          zoomToArtist(artistID);
         });
 
       if (!avatarURL) return;
