@@ -51,7 +51,7 @@ const onZoom = async (e) => {
   d3.select('#zoom-level').text(`${zoomLevel.toFixed(2)}x`);
 };
 
-const zoom = d3.zoom().scaleExtent([1, 25]).on('zoom', onZoom);
+const zoom = d3.zoom().scaleExtent([0.75, 40]).on('zoom', onZoom);
 
 // Initialize zoom
 svg.call(zoom);
@@ -74,7 +74,7 @@ window.zoomToArtist = (id) => {
 
 // Get the data
 const pointsObj = { ...(await d3.json('data/2.5k_pca_log.json')) };
-const points = Object.entries(pointsObj).slice(0, 2500);
+const points = Object.entries(pointsObj).slice(0, 500);
 // TODO: cache this up in localStorage, it's only ~1MB
 let artistData = await d3.json('data/2.5k_artist_data.json');
 
