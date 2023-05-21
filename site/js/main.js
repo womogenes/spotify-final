@@ -67,14 +67,14 @@ window.zoomToArtist = (id) => {
     .duration(1500)
     .call(
       zoom.transform,
-      d3.zoomIdentity.scale(10).translate(-toTransform[0], -toTransform[1]),
+      d3.zoomIdentity.scale(20).translate(-toTransform[0], -toTransform[1]),
       [toTransform[0], toTransform[1]]
     );
 };
 
 // Get the data
 const pointsObj = { ...(await d3.json('data/2.5k_pca_log.json')) };
-const points = Object.entries(pointsObj).slice(0, 500);
+const points = Object.entries(pointsObj).slice(0, 2500);
 // TODO: cache this up in localStorage, it's only ~1MB
 let artistData = await d3.json('data/2.5k_artist_data.json');
 
@@ -92,6 +92,8 @@ const topGenres = [
   'metal',
   'country',
   'christian',
+  'latin',
+  'punk',
 ];
 let genreColor = d3.scaleOrdinal([
   '#dddddd80',
