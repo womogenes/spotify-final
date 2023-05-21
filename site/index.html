@@ -26,6 +26,12 @@
       src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
     ></script>
 
+    <!-- Font awesome -->
+    <script
+      src="https://kit.fontawesome.com/c55bdc3f82.js"
+      crossorigin="anonymous"
+    ></script>
+
     <script src="libs/d3.v7.min.js"></script>
     <script src="js/utils.js" type="module" defer></script>
     <script src="js/main.js" type="module" defer></script>
@@ -46,13 +52,30 @@
           <div x-show="expanded" x-collapse id="legend"></div>
         </div>
 
-        <div id="artist-container">
+        <div id="artist-container" x-ref="artistContainer" x-data="">
+          <button
+            class="close-btn"
+            @click="() => {
+              d3.select('#artist-container')
+                .transition(300)
+                .style('opacity', 0)
+                .on('end', function() {
+                  d3.select(this).style('visibility', 'hidden')
+                })
+            }"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+
           <div class="header">
             <img src="" alt="" />
             <div class="info">
               <h2 class="name">Artist name</h2>
               <p class="spotify-href">
-                <a href="" target="_blank">Spotify profile</a>
+                <a href="" target="_blank">
+                  <i class="fa-brands fa-spotify"></i>
+                  <span>Spotify profile</span>
+                </a>
               </p>
               <p class="popularity"></p>
               <p class="followers"></p>

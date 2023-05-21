@@ -94,6 +94,7 @@ window.zoomToArtist = (id) => {
     .text(`${data['followers']['total'].toLocaleString()} followers`);
 
   box.select('.bio span').html(data['bio']);
+  document.querySelector('#artist-container .bio').scrollTop = 0;
   console.log(data['url']);
   box.select('.bio a').attr('href', `https://last.fm/music/${data['name']}`);
 };
@@ -199,6 +200,8 @@ window.renderPoints = (r) => {
         .attr('r', r)
         .attr('fill', genreColor(mainGenre))
         .on('mouseover', (e) => {
+          if (mobileCheck()) return;
+
           tooltip.select('.title').text(data['name']);
           tooltip.style('display', 'block');
           tooltip
