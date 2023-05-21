@@ -1,7 +1,7 @@
 import { luma, mobileCheck } from './utils.js';
 
 let initStroke = 1;
-const N = 500;
+const N = 2500;
 
 // Initialize the svg
 const svg = d3
