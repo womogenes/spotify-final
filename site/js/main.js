@@ -1,6 +1,7 @@
 import { luma, mobileCheck } from './utils.js';
 
 let initStroke = 1;
+const N = 500;
 
 // Initialize the svg
 const svg = d3
@@ -63,18 +64,26 @@ window.zoomToArtist = (id) => {
 
   svg
     .transition()
-    .delay(250)
     .duration(1500)
     .call(
       zoom.transform,
       d3.zoomIdentity.scale(20).translate(-toTransform[0], -toTransform[1]),
       [toTransform[0], toTransform[1]]
     );
+
+  // Prep the box
+  const box = d3.select('#artist-container');
+  const data = artistData[id];
+
+  box.select('.name').text(data['name']);
+  box.select('.bio span').html(data['bio']);
+  console.log(data['url']);
+  box.select('.bio a').attr('href', `https://last.fm/music/${data['name']}`);
 };
 
 // Get the data
 const pointsObj = { ...(await d3.json('data/2.5k_pca_log.json')) };
-const points = Object.entries(pointsObj).slice(0, 2500);
+const points = Object.entries(pointsObj).slice(0, N);
 // TODO: cache this up in localStorage, it's only ~1MB
 let artistData = await d3.json('data/2.5k_artist_data.json');
 
@@ -89,11 +98,7 @@ const topGenres = [
   'indie',
   'soul',
   'rock',
-  'metal',
   'country',
-  'christian',
-  'latin',
-  'punk',
 ];
 let genreColor = d3.scaleOrdinal([
   '#dddddd80',
@@ -163,6 +168,7 @@ window.renderPoints = (r) => {
     .join('g')
     .attr('transform', (d) => `translate(${d[1][0]},${d[1][1]})`)
     .attr('id', (d) => `g_${d[0]}`)
+    .style('cursor', 'pointer')
     .each(function (d) {
       // Construct circle and image
       const artistID = d[0];

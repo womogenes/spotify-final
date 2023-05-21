@@ -41,15 +41,21 @@
           </div>
         </div>
 
-        <div id="debug-box" x-data="{ expanded: true }">
-          <h2 @click="expanded = !expanded">Debug box</h2>
+        <div id="legend-container" x-data="{ expanded: false }">
+          <h2 @click="expanded = !expanded">Legend</h2>
+          <div x-show="expanded" x-collapse id="legend"></div>
+        </div>
 
-          <div x-show="expanded" x-collapse>
-            <p>Zoom: <span id="zoom-level">1x</span></p>
-            <div id="legend">
-              <h3>Legend</h3>
-            </div>
+        <div id="artist-container">
+          <h2 class="name">Artist name</h2>
+          <div class="links">
+            <span class="spotify"><a href=""></a></span>
+            <span class="last"><a href=""></a></span>
           </div>
+          <p class="bio">
+            <span>Here's a testing bio</span>
+            <a href="">Read more on Last.fm</a>
+          </p>
         </div>
       </div>
     </main>
