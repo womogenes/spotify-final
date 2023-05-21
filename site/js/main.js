@@ -1,4 +1,4 @@
-import { luma } from './utils.js';
+import { luma, mobileCheck } from './utils.js';
 
 let initStroke = 1;
 let prevZoom = 1;
@@ -103,11 +103,14 @@ g.append('clipPath')
 
 // Tooltip element
 let tooltip = d3.select('#tooltip');
-d3.select('#visualization').on('mousemove', function (e) {
-  return tooltip
-    .style('top', e.pageY - 10 + 'px')
-    .style('left', e.pageX + 10 + 'px');
-});
+if (!mobileCheck()) {
+  // Following around mouse is only necessary on systems with mouse
+  d3.select('#visualization').on('mousemove', function (e) {
+    return tooltip
+      .style('top', e.pageY - 10 + 'px')
+      .style('left', e.pageX + 10 + 'px');
+  });
+}
 
 window.renderPoints = (r) => {
   g.style('opacity', 0);
