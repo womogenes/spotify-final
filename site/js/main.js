@@ -93,10 +93,16 @@ window.zoomToArtist = (id) => {
     .select('.info .followers')
     .text(`${data['followers']['total'].toLocaleString()} followers`);
 
-  box.select('.bio span').html(data['bio']);
-  document.querySelector('#artist-container .bio').scrollTop = 0;
-  console.log(data['url']);
-  box.select('.bio a').attr('href', `https://last.fm/music/${data['name']}`);
+  box
+    .select('.bio span')
+    .html(
+      data['bio']
+        .replace('".', '."')
+        .replace('",', ',"')
+        .replace(' ,', ',')
+        .replace(' .', '.')
+    );
+  document.querySelector('#artist-container .bio').scrollTop = 0; // Reset scroll on bio for mobile
 };
 
 // Get the data
