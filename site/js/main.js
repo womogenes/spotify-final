@@ -67,7 +67,7 @@ window.zoomToArtist = (id) => {
     .duration(1500)
     .call(
       zoom.transform,
-      d3.zoomIdentity.scale(20).translate(-toTransform[0], -toTransform[1]),
+      d3.zoomIdentity.scale(10).translate(-toTransform[0], -toTransform[1]),
       [toTransform[0], toTransform[1]]
     );
 
@@ -75,7 +75,24 @@ window.zoomToArtist = (id) => {
   const box = d3.select('#artist-container');
   const data = artistData[id];
 
+  d3.select('#artist-container')
+    .style('visibility', 'visible')
+    .transition(300)
+    .style('opacity', 1);
+
+  box
+    .select('img')
+    .attr('src', data['images'][0]['url'])
+    .attr('alt', `Profile im age of ${data['name']}`);
   box.select('.name').text(data['name']);
+  box
+    .select('.info .spotify-href a')
+    .attr('href', data['external_urls']['spotify']);
+  box.select('.info .popularity').text(`Popularity: ${data['popularity']}`);
+  box
+    .select('.info .followers')
+    .text(`${data['followers']['total'].toLocaleString()} followers`);
+
   box.select('.bio span').html(data['bio']);
   console.log(data['url']);
   box.select('.bio a').attr('href', `https://last.fm/music/${data['name']}`);

@@ -18,9 +18,20 @@ main {
   align-items: center;
 }
 
+h1,
 h2,
 h3 {
   margin: 0;
+}
+
+a,
+a:visited {
+  color: #3434ec;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 #content-container {
@@ -117,6 +128,8 @@ h3 {
   right: 1em;
   padding: 1em;
   width: 400px;
+  visibility: hidden;
+  opacity: 0;
 
   background-color: #ffffffe0;
   backdrop-filter: blur(20px);
@@ -124,8 +137,40 @@ h3 {
   border-radius: 5px;
 }
 
-#artist-container .name {
-  margin-bottom: 0.5em;
+#artist-container .header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+  gap: 20px;
+}
+
+#artist-container .info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* padding-top: 1em; */
+}
+
+#artist-container .info .name {
+  margin-bottom: 0.2em;
+}
+
+#artist-container .info p {
+  margin: 0;
+  margin-bottom: 0.2em;
+}
+
+#artist-container .info p a {
+  text-decoration: none;
+}
+#artist-container .info p a:hover {
+  text-decoration: underline;
+}
+
+#artist-container img {
+  width: 100px;
+  height: 100px;
+  border-radius: 9999px;
 }
 
 #artist-container .bio {
@@ -135,4 +180,25 @@ h3 {
 
 #artist-container .bio a {
   font-size: 80%;
+}
+
+/* Title container */
+#title-container {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  padding: 1em;
+
+  background-color: #ffffffe0;
+  backdrop-filter: blur(20px);
+  border: 1px solid #00000020;
+  border-radius: 5px;
+}
+
+#title-container h1 {
+  margin-bottom: 0.2em;
+}
+
+#title-container p {
+  margin: 0;
 }
