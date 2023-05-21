@@ -15,6 +15,17 @@
       rel="stylesheet"
     />
 
+    <!-- Alpine Plugins -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"
+    ></script>
+    <!-- Alpine Core -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+
     <script src="libs/d3.v7.min.js"></script>
     <script src="js/utils.js" type="module" defer></script>
     <script src="js/main.js" type="module" defer></script>
@@ -30,12 +41,18 @@
           </div>
         </div>
 
-        <div id="debug-box">
+        <div
+          id="debug-box"
+          x-data="{ expanded: false }"
+          @click="expanded = !expanded"
+        >
           <h2>Debug box</h2>
-          <p>Zoom: <span id="zoom-level">1x</span></p>
 
-          <div id="legend">
-            <h3>Legend</h3>
+          <div x-show="expanded" x-collapse>
+            <p>Zoom: <span id="zoom-level">1x</span></p>
+            <div id="legend">
+              <h3>Legend</h3>
+            </div>
           </div>
         </div>
       </div>

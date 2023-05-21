@@ -45,7 +45,7 @@ svg.call(zoom);
 // Get the data
 let points = Object.entries(await d3.json('data/2.5k_pca_log.json')).slice(
   0,
-  1000
+  2500
 );
 // TODO: cache this up in localStorage, it's only ~1MB
 let artistData = await d3.json('data/2.5k_artist_data.json');
