@@ -1,16 +1,15 @@
-// Initialize the svg
-let width = 720,
-  height = 720;
+import { luma } from './utils.js';
 
 let initStroke = 1;
 let prevZoom = 1;
 
+// Initialize the svg
 const svg = d3
   .select('#visualization')
   .append('svg')
   .attr('xmlns', 'http://www.w3.org/2000/svg')
-  .attr('width', width)
-  .attr('height', height)
+  .attr('width', '100%')
+  .attr('height', '100%')
   .attr('viewBox', [-50, -45, 100, 100]);
 
 const g = svg
@@ -46,7 +45,7 @@ svg.call(zoom);
 // Get the data
 let points = Object.entries(await d3.json('data/2.5k_pca_log.json')).slice(
   0,
-  2500
+  1000
 );
 // TODO: cache this up in localStorage, it's only ~1MB
 let artistData = await d3.json('data/2.5k_artist_data.json');
@@ -71,7 +70,7 @@ const topGenres = [
 let genreColor = d3.scaleOrdinal([
   '#dddddd80',
   '#fcba03',
-  '#32a852',
+  '#eb4034',
   ...d3.schemeCategory10,
 ]);
 genreColor.domain(topGenres);
@@ -104,6 +103,11 @@ g.append('clipPath')
 
 // Tooltip element
 let tooltip = d3.select('#tooltip');
+d3.select('#visualization').on('mousemove', function (e) {
+  return tooltip
+    .style('top', e.pageY - 10 + 'px')
+    .style('left', e.pageX + 10 + 'px');
+});
 
 window.renderPoints = (r) => {
   g.style('opacity', 0);
@@ -125,18 +129,31 @@ window.renderPoints = (r) => {
         .attr('fill', genreColor(mainGenre))
         .on('mouseover', function (e) {
           tooltip.select('.title').text(data['name']);
-          tooltip.select('.bio').html(data['bio']);
-          tooltip.style('visibility', '');
+          tooltip.style('display', 'block');
+          tooltip
+            .select('.tags')
+            .style('margin-top', data['genres'].length > 0 ? '0.5em' : '0')
+            .selectAll('span')
+            .data(data['genres'])
+            .join('span')
+            .each(function (genre) {
+              let bgColor = genreColor.domain().includes(genre)
+                ? genreColor(genre)
+                : '#dddddd';
+
+              let lightness = luma(bgColor);
+
+              d3.select(this)
+                .attr('class', 'genre-tag')
+                .style('background-color', bgColor)
+                .style('color', lightness < 0.8 ? '#fff' : '#000')
+                .text((d) => d);
+            });
+
           return tooltip.transition(300).style('opacity', 1);
         })
-        .on('mousemove', function (e) {
-          return tooltip
-            .style('top', e.pageY - 10 + 'px')
-            .style('left', e.pageX + 10 + 'px');
-        })
-        .on('mouseout', async function (e) {
-          await tooltip.transition(300).style('opacity', 0).end();
-          tooltip.style('visibility', 'hidden');
+        .on('mouseout', function (e) {
+          tooltip.transition(300).style('opacity', 0);
         });
 
       if (!avatarURL) return;
@@ -150,7 +167,7 @@ window.renderPoints = (r) => {
         .attr('transform', `translate(${-avatar_size / 2},${-avatar_size / 2})`)
         .attr('preserveAspectRatio', 'xMidYMid slice')
         .attr('clip-path', 'url(#avatarClipObj)')
-        .attr('pointer-events', 'none');
+        .style('pointer-events', 'none');
     });
 
   console.log('loaded');
