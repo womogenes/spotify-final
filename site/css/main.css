@@ -94,6 +94,7 @@ a:hover {
   padding: 1em;
   min-width: 140px;
   box-sizing: border-box;
+  pointer-events: all;
 
   background-color: #fff;
   /* backdrop-filter: blur(10px);
