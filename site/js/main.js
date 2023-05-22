@@ -100,7 +100,7 @@ window.zoomToArtist = (id) => {
   box
     .select('.info .spotify-href a')
     .attr('href', data['external_urls']['spotify']);
-  box.select('.info .popularity').text(`Popularity: ${data['popularity']}`);
+  // box.select('.info .popularity').text(`Popularity: ${data['popularity']}`);
   box
     .select('.info .followers')
     .text(`${data['followers']['total'].toLocaleString()} followers`);
@@ -113,7 +113,9 @@ window.zoomToArtist = (id) => {
         .replace('",', ',"')
         .replace(' ,', ',')
         .replace(' .', '.')
-    );
+    )
+    .select('a')
+    .attr('target', '_blank');
   document.querySelector('#artist-container .bio').scrollTop = 0; // Reset scroll on bio for mobile
 };
 
@@ -146,6 +148,12 @@ genreColor.domain(topGenres);
 let genreLegend = genreColor.domain().map((x) => [x, genreColor(x)]);
 
 // Plot key in the debug box
+function resetGenreSelection(e) {
+  d3.select(this).style('background-color', '');
+  g.selectAll('g').each(function () {
+    d3.select(this).attr('opacity', 1);
+  });
+}
 d3.select('#legend')
   .selectAll('div')
   .data(genreLegend)
@@ -159,12 +167,7 @@ d3.select('#legend')
       }
     });
   })
-  .on('mouseout', function (e) {
-    d3.select(this).style('background-color', '');
-    g.selectAll('g').each(function () {
-      d3.select(this).attr('opacity', 1);
-    });
-  });
+  .on('mouseout', resetGenreSelection);
 
 d3.selectAll('.legend-item')
   .append('span')

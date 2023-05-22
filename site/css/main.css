@@ -1,4 +1,4 @@
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 940px) {
   body {
     font-size: smaller;
   }
@@ -56,7 +56,7 @@ h3 {
 
 a,
 a:visited {
-  color: #3434ec;
+  color: #415ae7;
   text-decoration: none;
 }
 
@@ -173,7 +173,6 @@ a:hover {
   flex-direction: column;
   padding: 1em;
   position: relative;
-  width: min(400px, calc(100% - 4em));
   visibility: hidden;
   opacity: 0;
   pointer-events: all;
@@ -196,7 +195,7 @@ a:hover {
 
   background-color: transparent;
   border: none;
-  font-size: 200%;
+  font-size: 150%;
   color: #00000080;
 }
 
@@ -211,11 +210,10 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  padding-right: 24px;
 }
 
 #artist-container .info .spotify-href a {
-  color: #1db954;
+  color: #009e37;
 }
 
 #artist-container .info .name {
@@ -232,6 +230,7 @@ a:hover {
   height: 100px;
   border-radius: 9999px;
   object-fit: cover;
+  aspect-ratio: 1;
 }
 
 #artist-container .bio {
@@ -267,23 +266,25 @@ a:hover {
 /* Search container */
 #top-container {
   position: static;
-  height: calc(100% - 1.5em);
+  height: calc(100% - 2em);
+  max-width: 440px;
 }
 
 #search-container {
   display: flex;
   align-items: stretch;
   gap: 10px;
-  pointer-events: all;
-  width: 400px;
   box-sizing: border-box;
+  pointer-events: all;
 
+  font-size: medium;
   border-radius: 10px;
   margin-bottom: 1em;
 }
 
 #search-container input {
   flex-grow: 1;
+  min-width: 0; /* Fixes weird sizing issue */
 }
 
 #search-container .search-button {
