@@ -5,7 +5,7 @@ with open("./data/name_id_maps.json") as fin:
     name2id = data["name2id"]
     id2name = data["id2name"]
 
-with open("./data/artist_freq.json") as fin:
+with open("./data/2.5k_artist_freq.json") as fin:
     artist_freq_dict = json.load(fin)
 
     N = 2500
