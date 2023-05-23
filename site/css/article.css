@@ -4,6 +4,12 @@ body {
   margin: 0;
 }
 
+@media only screen and (max-width: 440px) {
+  body {
+    padding: 1em;
+  }
+}
+
 main {
   display: flex;
   flex-direction: column;
@@ -11,7 +17,7 @@ main {
 }
 
 h1 {
-  font-size: 400%;
+  font-size: 300%;
 }
 
 #article-container {
