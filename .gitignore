@@ -1,6 +1,7 @@
 .vscode/
 data/
 __pycache__/
+_site/
 
 .env
 !site/data
