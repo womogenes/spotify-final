@@ -43,7 +43,7 @@ body {
 
 main {
   display: flex;
-  height: 100%;
+  height: calc(100% - 2em);
   justify-content: center;
   align-items: center;
 }
@@ -64,6 +64,11 @@ a:hover {
   text-decoration: underline;
 }
 
+.loading-text {
+  position: absolute;
+  font-weight: normal;
+}
+
 #visualization {
   position: absolute;
   left: 0;
@@ -73,6 +78,7 @@ a:hover {
 }
 
 #content-container {
+  display: flex; /* Necessary for artist height fit on mobile landscape */
   width: 100%;
   height: 100%;
   z-index: 20;
@@ -266,7 +272,6 @@ a:hover {
 /* Search container */
 #top-container {
   position: static;
-  height: calc(100% - 2em);
   max-width: 440px;
 }
 

@@ -264,7 +264,7 @@ window.renderPoints = (r) => {
         .style('pointer-events', 'none');
     });
 
-  console.log('loaded');
+  d3.select('.loading-text').remove();
   g.transition(300).style('opacity', 1);
 };
 
