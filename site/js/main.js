@@ -1,6 +1,5 @@
 import { luma, mobileCheck } from './utils.js';
 
-let initStroke = 1;
 const N = 2500;
 
 // Initialize the svg
@@ -12,10 +11,7 @@ const svg = d3
   .attr('height', '100%')
   .attr('viewBox', [-50, -45, 100, 100]);
 
-const g = svg
-  .append('g')
-  .attr('stroke-linecap', 'round')
-  .attr('stroke-width', initStroke);
+const g = svg.append('g');
 
 const getCurTransform = () => {
   // Grab current transform
@@ -120,7 +116,7 @@ window.zoomToArtist = (id) => {
 };
 
 // Get the data
-const pointsObj = { ...(await d3.json('data/2.5k_pca_log.json')) };
+const pointsObj = { ...(await d3.json('data/2.5k_pca_log_adjusted.json')) };
 const points = Object.entries(pointsObj).slice(0, N);
 // TODO: cache this up in localStorage, it's only ~1MB
 const artistData = await d3.json('data/2.5k_artist_data.json');
