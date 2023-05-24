@@ -7,7 +7,7 @@
     height: 100px;
   }
 
-  #search-container {
+  #top-container {
     width: 100% !important;
   }
 }
@@ -48,8 +48,12 @@
 }
 
 .loading-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
   font-weight: normal;
+  max-width: 80%;
 }
 
 #visualization {
@@ -66,7 +70,7 @@
   height: calc(100% - 2em);
   z-index: 20;
   pointer-events: none;
-  padding: 1em 0 0 1em;
+  padding: 0 1em 0 1em;
   box-sizing: border-box;
 }
 
@@ -94,6 +98,10 @@
   border: 1px solid #00000020;
   box-shadow: #00000040 0px 2px 5px -2px;
   border-radius: 10px;
+}
+
+#legend-container h2 {
+  cursor: pointer;
 }
 
 #legend {

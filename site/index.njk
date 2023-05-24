@@ -2,11 +2,22 @@
 layout: article_layout.njk
 ---
 
-<div id="writing">
+<div class="writing">
   {% renderFile "writing.md" %}
-  <p>Hello</p>
+
+  <p>
+    <i>You can also open the visualization in a
+    <a href="/interactive">
+    new window <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </i>
+  </p>
 </div>
 
 <div id="visualization-container">
-  {% include "interactive/blah.html" %}
+  {% include "interactive/component.html" %}
+</div>
+
+<div class="writing">
+  <p>Here's some padding</p>
 </div>

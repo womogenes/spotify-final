@@ -1,14 +1,18 @@
 body {
-  font-family: 'Inter', sans-serif;
-  padding: 4em;
-  padding-bottom: 0;
   margin: 0;
   overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
 @media only screen and (max-width: 440px) {
-  body {
-    padding: 1em;
+  .writing {
+    padding: 1.2em !important;
+  }
+}
+
+@media only screen and (min-width: 440px) {
+  #article-container {
+    margin-top: 5em;
   }
 }
 
@@ -20,17 +24,51 @@ main {
 
 h1 {
   font-size: 300%;
+  margin-bottom: 0.2em;
+}
+
+h2 {
+  margin-top: 1.2em;
+  margin-bottom: 0.8em;
+}
+
+p {
+  margin-top: 0.5em;
+}
+
+hr {
+  border: 0;
+  height: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.subtitle-container p {
+  margin: 0.2em;
+}
+
+.writing {
+  max-width: 800px;
+  padding: 0 4em;
 }
 
 #article-container {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
+  align-items: center;
+  opacity: 0.9;
 }
 
 #visualization-container {
   position: relative;
   height: min(800px, 100vh);
-  width: calc(100vw - 1em);
+  width: min(100vw, 1200px);
   align-self: center;
+
+  border: 1px solid #ddd;
+}
+
+/* Content stuff */
+.byline {
+  opacity: 0.8;
 }

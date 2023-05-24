@@ -1,5 +1,10 @@
 # provocative title
 
+<div class="subtitle-container">
+	<p>By <a href="https://womogenes.github.io" target="_blank">William Y. Feng</a> and Cecilia Sun</p>
+	<p><i>View the source code for this project <a href="https://github.com/womogenes/spotify-final" target="_blank">here</a>.</i></p>
+</div>
+
 ## introduction
 
 Music streaming service [Spotify](https://www.spotify.com/) transformed music listening when it first launched in 2008, and has since become the go-to method for streaming and listening to new music.

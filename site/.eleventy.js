@@ -30,12 +30,14 @@ module.exports = function (eleventyConfig) {
           throwOnError: false,
           displayMode: false,
         });
-      });
+      })
+      .replace(/\s+--\s+/g, '&mdash;');
   };
 
   const md = markdownIt({
     html: true,
     linkify: true,
+    typographer: true,
   });
   eleventyConfig.setLibrary('md', {
     render: (source) => latex(md.render(source)),
