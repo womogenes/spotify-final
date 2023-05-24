@@ -1,6 +1,6 @@
 import { luma, mobileCheck } from './utils.js';
 
-const N = 2500;
+const N = 500;
 
 // Initialize the svg
 const svg = d3
@@ -75,7 +75,7 @@ window.zoomToArtist = (id) => {
     .duration(1500)
     .call(
       zoom.transform,
-      d3.zoomIdentity.scale(10).translate(-toTransform[0], -toTransform[1]),
+      d3.zoomIdentity.scale(20).translate(-toTransform[0], -toTransform[1]),
       [toTransform[0], toTransform[1]]
     );
 
@@ -190,8 +190,8 @@ if (!mobileCheck()) {
   // Following around mouse is only necessary on systems with mouse
   d3.select('#visualization').on('mousemove', function (e) {
     return tooltip
-      .style('top', e.pageY - 10 + 'px')
-      .style('left', e.pageX + 10 + 'px');
+      .style('top', e.layerY - 10 + 'px')
+      .style('left', e.layerX + 10 + 'px');
   });
 }
 
