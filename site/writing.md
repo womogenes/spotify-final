@@ -9,12 +9,12 @@
 
 Music streaming service [Spotify](https://www.spotify.com/) transformed music listening when it first launched in 2008, and has since become the go-to method for streaming and listening to new music.
 Gone were the days of CDs and cassettes; users could now listen to high-quality music at the touch of a button.
-One of the greatest conveniences Spotify had to offer, however, was the ability to quickly create and add to playlists.
-
 <!---
-embed spotify playlists
+One of the greatest conveniences Spotify had to offer, however, was the ability to quickly create and add to playlists.
 --->
-this is a test
+
+The rise of Spotify and other online streaming servers have fundamentally changed the way we listen to music. 
+
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5YuogqMDKbD8KSXn71MGdt?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
 sth sth spotify playlists are funky goofy and representative of identity, idk. 
@@ -40,7 +40,7 @@ However, for our analysis, we decided to focus on the top 2500 artists as determ
 We were interested in the concept of "artist proximity" -- in other words, how often two artists appeared in user-created playlists together. To refine this concept, we defined the "Artist Interaction Score" (AIS) between two artists to be
 
 $$
-	\operatorname{AIS}(A,B) = \ln\left(\sum_{p\text{\# in playlists}}(\text{\ of tracks by artist }A\text{ in }p)(\text{\ of tracks by artist }B\text{ in }p)\right)
+	\operatorname{AIS}(A,B) = \ln\left(\sum_{p\text{ in playlists}}(\text{number of tracks by artist }A\text{ in }p)(\text{number of tracks by artist }B\text{ in }p)\right)
 $$
 <!--- add hashtags --->
 
