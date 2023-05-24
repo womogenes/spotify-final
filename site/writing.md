@@ -1,7 +1,7 @@
 # provocative title
 
 <div class="subtitle-container">
-	<p>By <a href="https://womogenes.github.io" target="_blank">William Y. Feng</a> and Cecilia Sun</p>
+	<p>By <a href="https://womogenes.github.io" target="_blank">William Y. Feng</a> and <a href="https://tinyurl.com/ceciliasun" target="_blank">Cecilia Sun</a></p>
 	<p><i>View the source code for this project <a href="https://github.com/womogenes/spotify-final" target="_blank">here</a>.</i></p>
 </div>
 
@@ -10,6 +10,12 @@
 Music streaming service [Spotify](https://www.spotify.com/) transformed music listening when it first launched in 2008, and has since become the go-to method for streaming and listening to new music.
 Gone were the days of CDs and cassettes; users could now listen to high-quality music at the touch of a button.
 One of the greatest conveniences Spotify had to offer, however, was the ability to quickly create and add to playlists.
+
+<!---
+embed spotify playlists
+--->
+
+Playlists range from
 
 ## about the dataset
 
@@ -26,14 +32,15 @@ And a visualization of the number of distinct artists represented per playlist:
 
 ## artist interactions
 
-Across the million playlists, there are a total of $298,000$ish artists represented.
-However, for our analysis, we decided to focus on the top $2500$ artists as determined by the number of occurrences of any of their songs across all playlists.
-
-We were roughly interested in the concept of "artist proximity" -- in other words, how often artists appeared in user-created playlists together. To refine this concept, we defined the "Artist Interaction Score" (AIS) between two artists to be
+Across the million playlists, there are a total of 287742 artists represented.
+However, for our analysis, we decided to focus on the top 2500 artists as determined by the number of occurrences of any of their songs across all playlists.
+  
+We were interested in the concept of "artist proximity" -- in other words, how often two artists appeared in user-created playlists together. To refine this concept, we defined the "Artist Interaction Score" (AIS) between two artists to be
 
 $$
-	\operatorname{AIS}(A,B) = \ln\left(\sum_{p\text{ in playlists}}()()\right)
+	\operatorname{AIS}(A,B) = \ln\left(\sum_{p\text{\# in playlists}}(\text{\ of tracks by artist }A\text{ in }p)(\text{\ of tracks by artist }B\text{ in }p)\right)
 $$
+<!--- add hashtags --->
 
 ## PCA (principal component analysis)
 
