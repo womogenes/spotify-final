@@ -1,7 +1,3 @@
----
-layout: article_layout.njk
----
-
 # provocative title
 
 ## introduction

@@ -37,12 +37,11 @@ html {
 body {
   padding: 1em;
   margin: 0;
-  overflow-x: hidden;
-  overflow-y: hidden;
 }
 
 main {
   display: flex;
+  position: relative;
   height: calc(100% - 2em);
   justify-content: center;
   align-items: center;

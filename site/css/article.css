@@ -23,3 +23,8 @@ h1 {
 #article-container {
   max-width: 800px;
 }
+
+#visualization-container {
+  height: 500px;
+  width: 100%;
+}

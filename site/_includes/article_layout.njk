@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     {# Our styles #}
-    <link rel="stylesheet" href="css/article.css" />
-    <link rel="stylesheet" href="css/a.css" />
+    <link rel="stylesheet" href="/css/article.css" />
+    <link rel="stylesheet" href="/css/a.css" />
 
     {# Inter #}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -33,7 +33,7 @@
   <body>
     <main>
       <div id="article-container">
-        {{ content | latex | safe }}
+        {{ content | safe }}
       </div>
     </main>
   </body>
