@@ -1,6 +1,6 @@
-const { EleventyRenderPlugin } = require('@11ty/eleventy');
+const katex = require('katex');
 const markdownIt = require('markdown-it');
-const mk = require('markdown-it-katex');
+const { EleventyRenderPlugin } = require('@11ty/eleventy');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('css');
@@ -9,12 +9,35 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(EleventyRenderPlugin);
 
-  // Markdown rendering options
+  // Math support for markdown
+  const latex = (content) => {
+    // https://benborgers.com/posts/eleventy-katex
+    const cleanEquation = (equation) =>
+      equation.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+
+    const displayRegex = /\$\$\s*(.+?)\s*\$\$/g;
+    const inlineRegex = /\$\s*(.+?)\s*\$/g;
+
+    return content
+      .replace(displayRegex, (_, equation) => {
+        return katex.renderToString(cleanEquation(equation), {
+          throwOnError: false,
+          displayMode: true,
+        });
+      })
+      .replace(inlineRegex, (_, equation) => {
+        return katex.renderToString(cleanEquation(equation), {
+          throwOnError: false,
+          displayMode: false,
+        });
+      });
+  };
+
   const md = markdownIt({
     html: true,
-    breaks: true,
     linkify: true,
   });
-  md.use(mk);
-  eleventyConfig.setLibrary('md', md);
+  eleventyConfig.setLibrary('md', {
+    render: (source) => latex(md.render(source)),
+  });
 };
