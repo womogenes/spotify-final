@@ -2,6 +2,7 @@
 data/
 __pycache__/
 _site/
+node_modules/
 
 .env
-!site/data
+!site/interactive/data
