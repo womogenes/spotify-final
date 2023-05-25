@@ -77,37 +77,37 @@ $$
 
 In other words, the more times two artists both have many songs in the same playlist, the higher their Artist Interaction Score will be.
 
-We then created a 2500 by 2500 matrix containing artist interaction scores for each of the 6250000 ordered pairs of artists. After ordering the rows and columns in order of artist popularity and coloring cells by value (darker cells
+We then created a 2500 by 2500 matrix containing artist interaction scores for each of the 6250000 ordered pairs of artists. After ordering the rows and columns in order of artist popularity and coloring cells by value (darker cells correspond to higher values)
 
-![alt text](images/correlationmatrix.png)
+![alt text](images/correlationmatrix2.png)
 
-<!---
-talk about how popular artists are generally put with popular artists
---->
+It makes sense that the highest values occur towards the top and the left of the matrix, since artists are sorted with respect to metrics of playlist inclusion and, broadly speaking, the total artist interaction score increases the more an artist is included in a playlist.
+however, the fact that the top left corner still contains the highest values indicates that popular artists are still more frequently put in playlists with other popular artists. 
 
 ## PCA (Principal Component Analysis)
 
-Principal Component Analysis (PCA) is a technique for analyzing and visualizing high-dimensional data, such as our artist interaction matrix. Broadly speaking, the method attempts to increase data interprability by reducing the number of dimensions (usually to just 2 dimensions) while still preserving as much information as possible.
+Principal Component Analysis (PCA) is a technique for analyzing and visualizing high-dimensional data, such as our artist interaction matrix. 
+Broadly speaking, the method attempts to increase data interprability by reducing the number of dimensions (usually to just 2 dimensions) while still preserving as much information as possible.
 
+<!---
 ### Some Technical Mathematical Details
-<!--
-explain pca.
--->
+For those who are familiar with linear algebra: 
+--->
 
 ## Limitations of our Analysis
 One limitation of our analysis is that defines its metrics of artist popularity and artist interaction through user-created *playlists*. This creates certain genres of music that are potentially underrepresented within the data: for instance, 
 songs from genres such as "album rock" are better listened to in the context of other songs from that album, while songs in more recently-released albums are more frequently written with playlist inclusion in mind: these songs are potentially overrepresented in our data. 
 It is difficult, however, to know for sure how severely these issues are manifested in our data and analysis because of the difficulty of finding objective measures of the already-vague notions of "artist popularity" and "artist interactions" and due to the sheer size of the data. 
 
-Another limitation of our analysis comes from the limitations of PCA itself. Our implementation of PCA projects high-dimension data onto a two-dimensional grid, but the interpretation of the axes is unclear.
+Another limitation of our analysis comes from the limitations of PCA itself. 
+Our implementation of PCA projects high-dimension data onto a two-dimensional grid and does really well at grouping "similar" artist together, but the interpretation of the axes on the PCA map as a whole is unclear.
 
 ## The PCA Map
 Here's the PCA map of the top 2500 artists in its entirety, with artists colored by genre. 
 
-<!---
-some general trends in the map
-pca is really good at grouping things. we're still not sure what the axes could be representing
---->
+![alt text](images/pcastatic.png)
+
+
 
 ## PCA map in all its glory
 
