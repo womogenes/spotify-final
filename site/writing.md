@@ -139,4 +139,4 @@ Furthermore, many of the genres for which we already have classifications have a
 
 ## Interactive PCA map 
 
-Finally, here is the interactive PCA map in all its glory.
+Finally, here is the interactive PCA map in all its glory. For performance purposes, only the top 500 artists are shown on the map, but the PCA map is still the original one generated from the top 2500 artists. 
