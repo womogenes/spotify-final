@@ -111,19 +111,27 @@ Here's the PCA map of the top 2500 artists in its entirety, with artists colored
 
 In the top left, we have a pretty large hip hop/rap cluster, with artists such as [Flo Rida](https://open.spotify.com/artist/0jnsk9HBra6NMjO2oANoPY?si=lkDbL7SJTPCJklXDS4ItdA), [T-Pain](https://open.spotify.com/artist/3aQeKQSyrW4qWr35idm0cy?si=9c2193f36485433a), and [Eminem](https://open.spotify.com/artist/7dGJo4pcD2V6oG8kP0tJRR?si=84d98b28f7394aa2) located at the top part of the cluster. 
 
-As we move down the hip hop/rap cluster, we start seeing some more EDM and dance pop-adjacent artists such as [Major Lazer](), [Zedd](), and [Marshmello](). 
+As we move down the hip hop/rap cluster, we start seeing some more EDM and dance pop-adjacent artists such as [Major Lazer](https://open.spotify.com/artist/738wLrAtLtCtFOLvQBXOXp?si=ddf755075e9e4cb6), [Zedd](https://open.spotify.com/artist/2qxJFvFYMEDqd7ui6kSAcq?si=9a1ebfa86f074dcd), and [Marshmello](https://open.spotify.com/artist/64KEffDW9EtZ1y2vBYgq8T?si=6788719bdb9b4418). 
 
 At the bottom of the graph is the "indie" cluster. The indie cluster features artists in the alternative rock genre, such as [Arctic Monkeys]() and [Radiohead](), dreampop, indietronica, and shoegaze artists such as [Glass Animals](), and folk and indie pop artists such as [Bon Iver](). It's generally characterized by a slower, guitar-heavy, and sometimes even dreamy sound. 
 
-The right side of the map contains a very large and broad rock cluster. Rock is a generally diverse genre, which is reflected in the PCA map.
+The right side of the map contains a very large and broad rock cluster. Rock is a generally diverse genre, which is reflected in its breadth on the PCA map.
 
+<!--- 
+annotate rock cluster image
+--->
+
+Towards the bottom of the rock cluster are artists that fall under the "art rock" genre such as [David Bowie](), [Pink Floyd](), and [The Beatles]().
+Like the indie cluster below and to the left of this sub-cluster, these artists have a more mellow and soft rock sound.
+
+A bit to the left of the art rock sub-cluster, closer to the center, are artists in the rock genre that are more alternative and funk rock-adjacent, with artists such as [Red Hot Chili Peppers](), [Weezer](), and [Nirvana](). 
+
+A bit higher up are punk rock, skate punk, and grunge artists, such as [Green Day]() and [My Chemical Romance]().  
+
+To the right of these artists are classic rock and album rock artists such as [Queen](), [The Rolling Stones](), and [The Eagles](). 
+
+Finally, the top of the rock cluster contains metal-adjacent rock artists such as [AC/DC](), [Guns and Roses](), and [Metallica]().
 <!---
-bottom, art rock, david bowie and pink floyd, the beatles.
-like the indie cluster to the left of it, it's more "mellow" and "soft" rock sound. 
-a bit left of that, towards the center, is alternative and funk rock -- red hot chili peppers, weezer, nirvana. even further left is punk rock and skate punk and grunge -- green day, MCR
-back to the right, classic rock and album rock towards the middle right, like queen, billy joel, the rolling stones, eagles
-top is metal-adjacent, ac/dc, guns and roses, metallica.
-
 to the left of that is a small country cluster, like carrie underwood and blake shelton. 
 
 pop is kinda a "default" tag, so it's mostly scattered everywhere: for many genres there is an associated "pop" version of that genre. 
