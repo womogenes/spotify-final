@@ -51,14 +51,12 @@ or this playlist consisting of 343 hours of "Satan's Saxophones":
 
 Spotify's [Million Playlist Dataset](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge) contains a million user-created Spotify playlists from between January 2010 and October 2017.
 
-<!---
-playlist stats, cheap visualizations
---->
-
-On average, playlists contain _x_ songs and _y_ distinct artists.
-Here's a visualization of the distribution of playlist length:
+On average, playlists contain 66 tracks from 38 distinct artists and 50 different albums.
+Here's a visualization of the distribution of playlist length across all the playlists:
+![alt text](images/artistdistrib.png)
 
 And a visualization of the number of distinct artists represented per playlist:
+![alt text](images/trackdistrib.png)
 
 ## artist interactions
 
