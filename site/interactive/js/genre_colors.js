@@ -2,8 +2,6 @@
 import Color from 'https://colorjs.io/dist/color.js';
 import { artistData, genreMap } from './data_export.js';
 
-console.log(Object.keys(artistData).length);
-
 // "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
 
 let bigGenreColors = {
@@ -23,12 +21,14 @@ const pickBigGenre = (genreList) => {
   return genreMap[genreList.find((g) => genreMap[g] !== 'other')] || 'other';
 };
 window.pickBigGenre = pickBigGenre;
-export { pickBigGenre };
 
-export const genreColor = (genre) => {
+const genreColor = (genre) => {
   return Object.keys(bigGenreColors).includes(genreMap[genre])
     ? bigGenreColors[genreMap[genre]]
     : '#eeeeee';
 };
+window.genreColor = genreColor;
 
 export const genreLegend = Object.entries(bigGenreColors);
+
+export { pickBigGenre, genreColor };
