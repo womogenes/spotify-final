@@ -88,15 +88,24 @@ talk about how popular artists are generally put with popular artists
 Principal Component Analysis (PCA) is a technique for analyzing and visualizing high-dimensional data, such as our artist interaction matrix. Broadly speaking, the method attempts to increase data interprability by reducing the number of dimensions (usually to just 2 dimensions) while still preserving as much information as possible. 
 
 ### Some Technical Mathematical Details
-<!---
+<!--
 explain pca.
---->
+-->
 
 ## Limitations of our Analysis
 One limitation of our analysis is that defines its metrics of artist popularity and artist interaction through user-created *playlists*. This creates certain genres of music that are potentially underrepresented within the data: for instance, 
-songs from genres such as "album rock" are better listened to in the context of other songs from that album, while songs in more recently-released albums are designed for inclusion in playlists, creating the possibility that they are potentially overrepresented in the data. 
+songs from genres such as "album rock" are better listened to in the context of other songs from that album, while songs in more recently-released albums are more frequently written with playlist inclusion in mind: these songs are potentially overrepresented in our data. 
+It is difficult, however, to know for sure how severely these issues are manifested in our data and analysis because of the difficulty of finding objective measures of the already-vague notions of "artist popularity" and "artist interactions" and due to the sheer size of the data. 
 
 Another limitation of our analysis comes from the limitations of PCA itself. Our implementation of PCA projects high-dimension data onto a two-dimensional grid, but the interpretation of the axes is unclear. 
+
+## The PCA Map
+Here's the PCA map of the top 2500 artists in its entirety, with artists colored by genre. 
+
+<!---
+some general trends in the map
+pca is really good at grouping things. we're still not sure what the axes could be representing
+--->
 
 ## PCA map in all its glory
 Finally, here is the interactive PCA map in all its glory. 
