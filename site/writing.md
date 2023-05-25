@@ -72,7 +72,7 @@ We were interested in the concept of "artist proximity" -- in other words, how o
 To rigorize this concept, we defined the "Artist Interaction Score" (AIS) between two artists to be
 
 $$
-	\operatorname{AIS}(A,B) = \ln\left(\sum_{p\text{ in playlists}}(\text{number of tracks by }A\text{ in }p)(\text{number of tracks by }B\text{ in }p)\right).
+	\operatorname{AIS}(A,B) = \ln\left(\sum_{p\text{ in playlists}}(\text{no. tracks by }A\text{ in }p)(\text{no. tracks by }B\text{ in }p)\right).
 $$
 
 In other words, the more times two artists both have many songs in the same playlist, the higher their Artist Interaction Score will be.
@@ -100,7 +100,7 @@ songs from genres such as "album rock" are better listened to in the context of 
 It is difficult, however, to know for sure how severely these issues are manifested in our data and analysis because of the difficulty of finding objective measures of the already-vague notions of "artist popularity" and "artist interactions" and due to the sheer size of the data. 
 
 Another limitation of our analysis comes from the limitations of PCA itself. 
-Our implementation of PCA projects high-dimension data onto a two-dimensional grid and does really well at grouping "similar" artist together, but the interpretation of the axes on the PCA map as a whole is unclear.
+Our implementation of PCA projects high-dimension data onto a two-dimensional grid and does really well at grouping "similar" artist together, but the actual interpretation of the axes on the PCA map as a whole is unclear.
 
 ## The PCA Map
 Here's the PCA map of the top 2500 artists in its entirety, with artists colored by genre. 
