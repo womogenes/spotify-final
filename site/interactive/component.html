@@ -38,7 +38,10 @@
     ></script>
 
     <script src="/interactive/js/libs/d3.v7.min.js"></script>
+    <script src="/interactive/js/data_export.js" type="module" defer></script>
     <script src="/interactive/js/utils.js" type="module" defer></script>
+    <script src="/interactive/js/colors.js" type="module" defer></script>
+    <script src="/interactive/js/genre_colors.js" type="module" defer></script>
     <script src="/interactive/js/main.js" type="module" defer></script>
   </head>
 
@@ -56,7 +59,7 @@
         </div>
       </div>
       <div id="content-container">
-        <div id="legend-container" x-data="{ expanded: false }">
+        <div id="legend-container" x-data="{ expanded: true }">
           <h2 @click="expanded = !expanded">Legend</h2>
           <div x-show="expanded" x-collapse id="legend"></div>
         </div>

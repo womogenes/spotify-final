@@ -1,6 +1,6 @@
 import { luma, mobileCheck } from './utils.js';
-
-const N = 500;
+import { pointsObj, points, artistData } from './data_export.js';
+import { genreLegend, genreColor, pickBigGenre } from './genre_colors.js';
 
 // Initialize the svg
 const svg = d3
@@ -115,35 +115,8 @@ window.zoomToArtist = (id) => {
   document.querySelector('#artist-container .bio').scrollTop = 0; // Reset scroll on bio for mobile
 };
 
-// Get the data
-const pointsObj = {
-  ...(await d3.json('/interactive/data/2.5k_pca_log_adjusted.json')),
-};
-const points = Object.entries(pointsObj).slice(0, N);
-// TODO: cache this up in localStorage, it's only ~1MB
-const artistData = await d3.json('/interactive/data/2.5k_artist_data.json');
-
 // Colors
 // TODO: don't hard-code this
-const topGenres = [
-  'other',
-  'hip hop',
-  'rap',
-  'pop',
-  'edm',
-  'indie',
-  'soul',
-  'rock',
-  'country',
-];
-let genreColor = d3.scaleOrdinal([
-  '#dddddd80',
-  '#fcba03',
-  '#eb4034',
-  ...d3.schemeCategory10,
-]);
-genreColor.domain(topGenres);
-let genreLegend = genreColor.domain().map((x) => [x, genreColor(x)]);
 
 // Plot key in the debug box
 function resetGenreSelection(e) {
@@ -160,7 +133,7 @@ d3.select('#legend')
   .on('mouseover', function (e, d) {
     d3.select(this).style('background-color', '#00000020');
     g.selectAll('g').each(function (itemData) {
-      if (artistData[itemData[0]]['main_genre'] !== d[0]) {
+      if (pickBigGenre(artistData[itemData[0]]['genres']) !== d[0]) {
         d3.select(this).attr('opacity', 0.05);
       }
     });
@@ -210,7 +183,7 @@ window.renderPoints = (r) => {
       // Construct circle and image
       const artistID = d[0];
       const data = artistData[artistID];
-      const mainGenre = data['main_genre'];
+      const mainGenre = pickBigGenre(data['genres']);
       const avatarURL = data['images'][2]?.url;
       data['bio'] = data['bio'];
 
@@ -230,10 +203,7 @@ window.renderPoints = (r) => {
             .data(data['genres'])
             .join('span')
             .each(function (genre) {
-              let bgColor = genreColor.domain().includes(genre)
-                ? genreColor(genre)
-                : '#dddddd';
-
+              let bgColor = genreColor(genre);
               let lightness = luma(bgColor);
 
               d3.select(this)
