@@ -12,6 +12,7 @@
   "devDependencies": {
     "@11ty/eleventy": "^2.0.1",
     "katex": "^0.16.7",
-    "markdown-it": "^13.0.1"
+    "markdown-it": "^13.0.1",
+    "markdown-it-for-inline": "^0.1.1"
   }
 }
