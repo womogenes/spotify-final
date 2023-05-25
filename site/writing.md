@@ -5,6 +5,8 @@
 	<p><i>View the source code for this project <a href="https://github.com/womogenes/spotify-final" target="_blank">here</a>.</i></p>
 </div>
 
+![alt text](images/pcastaticnolegend.png)
+
 ## Introduction
 
 Music streaming service [Spotify](https://www.spotify.com/) transformed music listening when it first launched in 2008, and has since become the go-to method for streaming and listening to new music.
@@ -103,12 +105,38 @@ Another limitation of our analysis comes from the limitations of PCA itself.
 Our implementation of PCA projects high-dimension data onto a two-dimensional grid and does really well at grouping "similar" artist together, but the actual interpretation of the axes on the PCA map as a whole is unclear.
 
 ## The PCA Map
-Here's the PCA map of the top 2500 artists in its entirety, with artists colored by genre. 
+Here's the PCA map of the top 2500 artists in its entirety, with artists colored by genre (according to the Spotify genre API). 
 
 ![alt text](images/pcastatic.png)
 
+In the top left, we have a pretty large hip hop/rap cluster, with artists such as [Flo Rida](https://open.spotify.com/artist/0jnsk9HBra6NMjO2oANoPY?si=lkDbL7SJTPCJklXDS4ItdA), [T-Pain](https://open.spotify.com/artist/3aQeKQSyrW4qWr35idm0cy?si=9c2193f36485433a), and [Eminem](https://open.spotify.com/artist/7dGJo4pcD2V6oG8kP0tJRR?si=84d98b28f7394aa2) located at the top part of the cluster. 
 
+As we move down the hip hop/rap cluster, we start seeing some more EDM and dance pop-adjacent artists such as [Major Lazer](https://open.spotify.com/artist/738wLrAtLtCtFOLvQBXOXp?si=ddf755075e9e4cb6), [Zedd](https://open.spotify.com/artist/2qxJFvFYMEDqd7ui6kSAcq?si=9a1ebfa86f074dcd), and [Marshmello](https://open.spotify.com/artist/64KEffDW9EtZ1y2vBYgq8T?si=6788719bdb9b4418). 
 
-## PCA map in all its glory
+At the bottom of the graph is the "indie" cluster. The indie cluster features artists in the alternative rock genre, such as [Arctic Monkeys](https://open.spotify.com/artist/7Ln80lUS6He07XvHI8qqHH?si=ed03115dfb1f4c40) and [Radiohead](https://open.spotify.com/artist/4Z8W4fKeB5YxbusRsdQVPb?si=0cb8183bf614459b), dreampop, indietronica, and shoegaze artists such as [Glass Animals](https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq?si=948616adeb7d4533), and folk and indie pop artists such as [Bon Iver](https://open.spotify.com/artist/4LEiUm1SRbFMgfqnQTwUbQ?si=4d43a97ee2df45e0). It's generally characterized by a slower, guitar-heavy, and sometimes even dreamy sound. 
+
+The right side of the map contains a very large and broad rock cluster. Rock is a generally diverse genre, which is reflected in its breadth on the PCA map.
+
+<!--- 
+annotate rock cluster image
+--->
+
+Towards the bottom of the rock cluster are artists that fall under the "art rock" genre such as [David Bowie](https://open.spotify.com/artist/0oSGxfWSnnOXhD2fKuz2Gy?si=f1b417283ce0447a), [Pink Floyd](https://open.spotify.com/artist/0k17h0D3J5VfsdmQ1iZtE9?si=009e85d058024275), and [The Beatles](https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2?si=761ce088be954cfb).
+Like the indie cluster below and to the left of this sub-cluster, these artists have a more mellow and soft rock sound.
+
+A bit to the left of the art rock sub-cluster, closer to the center, are artists in the rock genre that are more alternative and funk rock-adjacent, with artists such as [Red Hot Chili Peppers](https://open.spotify.com/artist/0L8ExT028jH3ddEcZwqJJ5?si=842d841ee4d249c4), [Weezer](https://open.spotify.com/artist/3jOstUTkEu2JkjvRdBA5Gu?si=df624abe227140e9), and [Nirvana](https://open.spotify.com/artist/6olE6TJLqED3rqDCT0FyPh?si=a5aa362099194aac). 
+
+A bit higher up are punk rock, skate punk, and grunge artists, such as [Green Day](https://open.spotify.com/artist/7oPftvlwr6VrsViSDV7fJY?si=ed2e4dfd77da45e3) and [My Chemical Romance](https://open.spotify.com/artist/7FBcuc1gsnv6Y1nwFtNRCb?si=0db25d5cf3514617).  
+
+To the right of these artists are classic rock and album rock artists such as [Queen](https://open.spotify.com/artist/1dfeR4HaWDbWqFHLkxsg1d?si=9e2f63cf38bd4de5), [The Rolling Stones](https://open.spotify.com/artist/22bE4uQ6baNwSHPVcDxLCe?si=6e220afdc038442d), and the [Eagles](https://open.spotify.com/artist/0ECwFtbIWEVNwjlrfc6xoL?si=2cbae0e4ad7f47d2). 
+
+Finally, the top of the rock cluster contains metal-adjacent rock artists such as [AC/DC](https://open.spotify.com/artist/711MCceyCBcFnzjGY4Q7Un?si=48431d271987429f), [Guns N' Roses](https://open.spotify.com/artist/3qm84nBOXUEQ2vnTfUTTFC?si=b95beca26c424928), and [Metallica](https://open.spotify.com/artist/2ye2Wgw4gimLv2eAKyk1NB?si=0cce223b75354f88).
+
+Along the top of the graph, next to the rock cluster, is a small country featuring artists such as [Carrie Underwood]() and [Blake Shelton](). There are also many artists who produce Christian music located in that cluster. 
+
+Finally, artists considered "pop" are scattered all around the map. This likely comes from the fact that "pop" is a pretty generic tag, and encompasses a wide range of musical sounds. 
+Furthermore, many of the genres for which we already have classifications have an associated "pop" version of that genre, so that pop has become a sort of default genre assignment under our genre assignment scheme for some artists.
+
+## Interactive PCA map 
 
 Finally, here is the interactive PCA map in all its glory.
