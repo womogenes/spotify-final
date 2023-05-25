@@ -105,7 +105,15 @@ Another limitation of our analysis comes from the limitations of PCA itself.
 Our implementation of PCA projects high-dimension data onto a two-dimensional grid and does really well at grouping "similar" artist together, but the actual interpretation of the axes on the PCA map as a whole is unclear.
 
 ## The PCA Map
-Here's the PCA map of the top 2500 artists in its entirety, with artists colored by genre (according to the Spotify genre API). 
+Finally, we get to the PCA map of the top 2500 artists. 
+
+### a note on artist colors
+To assign artist colors by genre, we created a list of broad genres that would have their own individual colors. We used the Spotify API to generate a list of raw genres for each artist, then used a substring search to categorize these raw genres into the broad genres. 
+
+In the case where artists had two or more raw genre tags that fell under different broad genres, we colored their associated data point with the color of the genre that came first alphabetically, which creates a slight bias in the colors; however, given the size of the data it would have been difficult to assign genres manually. 
+
+## The Map Itself
+Here's the PCA map of the top 2500 artists in its entirety, with artists colored by genre. 
 
 ![alt text](images/pcastatic.png)
 
@@ -139,4 +147,4 @@ Furthermore, many of the genres for which we already have classifications have a
 
 ## Interactive PCA map 
 
-Finally, here is the interactive PCA map in all its glory. For performance purposes, only the top 500 artists are shown on the map, but the PCA map is still the original one generated from the top 2500 artists. 
+Finally, here is the interactive PCA map in all its glory. 
