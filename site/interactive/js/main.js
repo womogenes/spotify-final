@@ -116,10 +116,12 @@ window.zoomToArtist = (id) => {
 };
 
 // Get the data
-const pointsObj = { ...(await d3.json('data/2.5k_pca_log_adjusted.json')) };
+const pointsObj = {
+  ...(await d3.json('/interactive/data/2.5k_pca_log_adjusted.json')),
+};
 const points = Object.entries(pointsObj).slice(0, N);
 // TODO: cache this up in localStorage, it's only ~1MB
-const artistData = await d3.json('data/2.5k_artist_data.json');
+const artistData = await d3.json('/interactive/data/2.5k_artist_data.json');
 
 // Colors
 // TODO: don't hard-code this
