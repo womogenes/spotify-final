@@ -1,11 +1,11 @@
-# provocative title 
+# Mapping Spotify Artists
 
 <div class="subtitle-container">
 	<p>By <a href="https://womogenes.github.io" target="_blank">William Y. Feng</a> and <a href="https://tinyurl.com/ceciliasun" target="_blank">Cecilia Sun</a></p>
 	<p><i>View the source code for this project <a href="https://github.com/womogenes/spotify-final" target="_blank">here</a>.</i></p>
 </div>
 
-## introduction
+## Introduction
 
 Music streaming service [Spotify](https://www.spotify.com/) transformed music listening when it first launched in 2008, and has since become the go-to method for streaming and listening to new music.
 Gone were the days of CDs and cassettes; users could now listen to high-quality music at the touch of a button.
@@ -47,7 +47,9 @@ or this playlist consisting of 343 hours of "Satan's Saxophones":
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5YuogqMDKbD8KSXn71MGdt?utm_source=generator" width="75%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 </center>
 
-## about the dataset
+In sum, playlists are generally organized with a central theme in mind. Therefore, tracks on the same user-created playlists can be expected to have some sort of commonality. 
+
+## About the Dataset
 
 Spotify's [Million Playlist Dataset](https://www.aicrowd.com/challenges/spotify-million-playlist-dataset-challenge) contains a million user-created Spotify playlists from between January 2010 and October 2017.
 
@@ -58,26 +60,43 @@ Here's a visualization of the distribution of playlist length across all the pla
 And a visualization of the number of distinct artists represented per playlist:
 ![alt text](images/trackdistrib.png)
 
-## artist interactions
+Both distributions have a right skew, but more curiously they are not normal distributions but rather decrease exponentially in frequency for greater numbers of artists and tracks.
+
+## Artist Interactions
 
 Across the one million playlists, there are a total of 287742 artists represented.
 For our analysis, however, we decided to focus on the top 2500 artists as determined by the number of occurrences of any of their songs across all playlists.
 
-<!---
-not necessarily 2500
---->
-  
 We were interested in the concept of "artist proximity" -- in other words, how often two artists appeared in user-created playlists together. 
 To rigorize this concept, we defined the "Artist Interaction Score" (AIS) between two artists to be
 
 $$
-	\operatorname{AIS}(A,B) = \ln\left(\sum_{p\text{ in playlists}}(\text{number of tracks by }A\text{ in }p)(\text{number of tracks by }B\text{ in }p)\right)
+	\operatorname{AIS}(A,B) = \ln\left(\sum_{p\text{ in playlists}}(\text{number of tracks by }A\text{ in }p)(\text{number of tracks by }B\text{ in }p)\right).
 $$
 
-## PCA (principal component analysis)
+In other words, the more times two artists both have many songs in the same playlist, the higher their Artist Interaction Score will be. 
 
-## the PCA map
+We then created a 2500 by 2500 matrix containing artist interaction scores for each of the 6250000 ordered pairs of artists. After ordering the rows and columns in order of artist popularity and coloring cells by value (darker cells
 
-## limitations
+![alt text](images/correlationmatrix.png)
+
+<!---
+talk about how popular artists are generally put with popular artists
+--->
+
+## PCA (Principal Component Analysis)
+Principal Component Analysis (PCA) is a technique for analyzing and visualizing high-dimensional data, such as our artist interaction matrix. Broadly speaking, the method attempts to increase data interprability by reducing the number of dimensions (usually to just 2 dimensions) while still preserving as much information as possible. 
+
+### Some Technical Mathematical Details
+<!---
+explain pca.
+--->
+
+## Limitations of our Analysis
+One limitation of our analysis is that defines its metrics of artist popularity and artist interaction through user-created *playlists*. This creates certain genres of music that are potentially underrepresented within the data: for instance, 
+songs from genres such as "album rock" are better listened to in the context of other songs from that album, while songs in more recently-released albums are designed for inclusion in playlists, creating the possibility that they are potentially overrepresented in the data. 
+
+Another limitation of our analysis comes from the limitations of PCA itself. Our implementation of PCA projects high-dimension data onto a two-dimensional grid, but the interpretation of the axes is unclear. 
 
 ## PCA map in all its glory
+Finally, here is the interactive PCA map in all its glory. 
