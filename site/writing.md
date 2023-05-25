@@ -117,7 +117,9 @@ At the bottom of the graph is the "indie" cluster. The indie cluster features ar
 
 The right side of the map contains a very large and broad rock cluster. Rock is a generally diverse genre, which is reflected in the PCA map.
 
+<!---
 bottom, art rock, david bowie and pink floyd, the beatles.
+like the indie cluster to the left of it, it's more "mellow" and "soft" rock sound. 
 a bit left of that, towards the center, is alternative and funk rock -- red hot chili peppers, weezer, nirvana. even further left is punk rock and skate punk and grunge -- green day, MCR
 back to the right, classic rock and album rock towards the middle right, like queen, billy joel, the rolling stones, eagles
 top is metal-adjacent, ac/dc, guns and roses, metallica.
@@ -125,6 +127,7 @@ top is metal-adjacent, ac/dc, guns and roses, metallica.
 to the left of that is a small country cluster, like carrie underwood and blake shelton. 
 
 pop is kinda a "default" tag, so it's mostly scattered everywhere: for many genres there is an associated "pop" version of that genre. 
+--->
 
 ## Interactive PCA map 
 
