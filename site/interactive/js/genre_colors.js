@@ -9,7 +9,7 @@ let bigGenreColors = {
   'hip hop': '#ea5545',
   rap: '#f46a9b',
   edm: '#ef9b20',
-  indie: '#ede15b',
+  indie: '#d9cd48',
   soul: '#86cf32',
   jazz: '#87bc45',
   rock: '#27aeef',
