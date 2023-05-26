@@ -5,7 +5,7 @@
 	<p><i>View the source code for this project <a href="https://github.com/womogenes/spotify-final" target="_blank">here</a>.</i></p>
 </div>
 
-![alt text](images/pcastaticnolegend.png)
+![alt text](images/pcanolegend2.png)
 
 ## Introduction
 
@@ -115,7 +115,7 @@ In the case where artists had two or more raw genre tags that fell under differe
 ## The Map Itself
 Here's the PCA map of the top 2500 artists in its entirety, with artists colored by genre. 
 
-![alt text](images/pcastatic.png)
+![alt text](images/pcastatic2.png)
 
 In the top left, we have a pretty large hip hop/rap cluster, with artists such as [Flo Rida](https://open.spotify.com/artist/0jnsk9HBra6NMjO2oANoPY?si=lkDbL7SJTPCJklXDS4ItdA), [T-Pain](https://open.spotify.com/artist/3aQeKQSyrW4qWr35idm0cy?si=9c2193f36485433a), and [Eminem](https://open.spotify.com/artist/7dGJo4pcD2V6oG8kP0tJRR?si=84d98b28f7394aa2) located at the top part of the cluster. 
 
