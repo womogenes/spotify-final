@@ -1,5 +1,4 @@
 // Map every genre to a color
-import Color from 'https://colorjs.io/dist/color.js';
 import { artistData, genreMap } from './data_export.js';
 
 // "#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"
@@ -9,7 +8,7 @@ let bigGenreColors = {
   'hip hop': '#ea5545',
   rap: '#f46a9b',
   edm: '#ef9b20',
-  indie: '#d9cd48',
+  indie: '#ffd500',
   soul: '#86cf32',
   jazz: '#87bc45',
   rock: '#27aeef',

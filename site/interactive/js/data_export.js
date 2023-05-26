@@ -1,4 +1,4 @@
-const N = 2500;
+const N = 500;
 
 const artistDataArr = Object.entries({
   ...(await d3.json('/interactive/data/2.5k_artist_data.json')),

@@ -120,18 +120,18 @@ window.zoomToArtist = (id) => {
 
 // Plot key in the debug box
 function resetGenreSelection(e) {
-  d3.select(this).style('background-color', '');
+  d3.select(this).style('background-color', '#fff');
   g.selectAll('g').each(function () {
     d3.select(this).attr('opacity', 1);
   });
 }
 d3.select('#legend')
-  .selectAll('div')
+  .selectAll('button')
   .data(genreLegend)
-  .join('div')
+  .join('button')
   .attr('class', 'legend-item')
   .on('mouseover', function (e, d) {
-    d3.select(this).style('background-color', '#00000020');
+    d3.select(this).style('background-color', '#eee');
     g.selectAll('g').each(function (itemData) {
       if (pickBigGenre(artistData[itemData[0]]['genres']) !== d[0]) {
         d3.select(this).attr('opacity', 0.05);

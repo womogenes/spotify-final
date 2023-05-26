@@ -44,18 +44,8 @@
         <p>Loading... <i class="fas fa-circle-notch fa-spin"></i></p>
         <p>If the data doesn't appear soon, consider reloading the page.</p>
       </div>
-      <div id="visualization">
-        <div id="tooltip">
-          <h3 class="title"></h3>
-          <div class="tags"></div>
-        </div>
-      </div>
-      <div id="content-container">
-        <div id="legend-container" x-data="{ expanded: true }">
-          <h2 @click="expanded = !expanded">Legend</h2>
-          <div x-show="expanded" x-collapse id="legend"></div>
-        </div>
 
+      <div id="content-container">
         <div id="top-container">
           <div id="search-container" x-data="{ name: '' }">
             <label for="#search-input" hidden="true"
@@ -116,6 +106,23 @@
               <span>Here's a testing bio</span>
             </p>
           </div>
+        </div>
+
+        <div id="settings-container" x-data="{ open: false }" @click="open = !open">
+          <div id="settings-modal" x-show="open" x-collapse><p>Hello this is text</p></div>
+          <button :class="{ 'open' : open }"><i class="fa-solid fa-gear"></i></button>
+        </div>
+        
+        <div id="legend-container" x-data="{ expanded: true }">
+          <h2 @click="expanded = !expanded" tabindex="0">Legend</h2>
+          <div id="legend" x-show="expanded" x-collapse></div>
+        </div>
+      </div>
+
+      <div id="visualization">
+        <div id="tooltip">
+          <h3 class="title"></h3>
+          <div class="tags"></div>
         </div>
       </div>
     </div>
