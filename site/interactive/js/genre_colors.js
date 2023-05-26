@@ -11,7 +11,7 @@ let bigGenreColors = {
   pop: '#8c564b',
   edm: '#ef9b20',
   indie: '#ede15b',
-  soul: '#bdcf32',
+  soul: '#86cf32',
   jazz: '#87bc45',
   rock: '#27aeef',
   country: '#b33dc6',
