@@ -91,6 +91,7 @@
               <img src="" alt="" />
               <div class="info">
                 <h2 class="name">Artist name</h2>
+                <div class="tags"></div>
                 <p class="spotify-href">
                   <a href="" target="_blank">
                     <i class="fa-brands fa-spotify"></i>
@@ -127,7 +128,7 @@
         
         <div id="legend-container" x-data="{ expanded: true }">
           <h2 @keydown.enter="expanded = !expanded" @click="expanded = !expanded" tabindex="0">Legend</h2>
-          <div id="legend" x-show="expanded" x-collapse></div>
+          <form id="legend" x-show="expanded" x-collapse></form>
         </div>
       </div>
 

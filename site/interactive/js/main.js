@@ -66,6 +66,24 @@ window.onSearchSubmit = (name) => {
   zoomToArtist(obj[0]);
 };
 
+const createGenreTags = (container, genres) => {
+  container
+    .select('.tags')
+    .selectAll('span')
+    .data(genres)
+    .join('span')
+    .each(function (genre) {
+      let bgColor = genreColor(genre);
+      let lightness = luma(bgColor);
+
+      d3.select(this)
+        .attr('class', 'genre-tag')
+        .style('background-color', bgColor)
+        .style('color', lightness < 0.8 ? '#fff' : '#000')
+        .text((d) => d);
+    });
+};
+
 window.zoomToArtist = (id) => {
   // Utility function for zooming to artist
   // https://observablehq.com/@d3/programmatic-zoom
@@ -94,6 +112,7 @@ window.zoomToArtist = (id) => {
     .attr('src', data['images'][0]['url'])
     .attr('alt', `Profile im age of ${data['name']}`);
   box.select('.name').text(data['name']);
+  createGenreTags(box, data['genres']);
   box
     .select('.info .spotify-href a')
     .attr('href', data['external_urls']['spotify']);
@@ -135,9 +154,9 @@ function resetGenreSelection(e) {
   });
 }
 d3.select('#legend')
-  .selectAll('button')
+  .selectAll('div')
   .data(genreLegend)
-  .join('button')
+  .join('div')
   .attr('class', 'legend-item')
   .on('mouseover', function (e, d) {
     d3.select(this).style('background-color', '#eee');
@@ -185,7 +204,7 @@ window.renderPoints = (N) => {
       .append('g')
       .attr('transform', (d) => `translate(${d[1][0]},${d[1][1]})`)
       .attr('id', (d) => `g_${d[0]}`)
-      // .style('opacity', 0)
+      .style('cursor', 'pointer')
       .each(function (d) {
         // Construct circle and image
         const artistID = d[0];
@@ -203,22 +222,7 @@ window.renderPoints = (N) => {
 
             tooltip.select('.title').text(data['name']);
             tooltip.style('display', 'block');
-            tooltip
-              .select('.tags')
-              .style('margin-top', data['genres'].length > 0 ? '0.5em' : '0')
-              .selectAll('span')
-              .data(data['genres'])
-              .join('span')
-              .each(function (genre) {
-                let bgColor = genreColor(genre);
-                let lightness = luma(bgColor);
-
-                d3.select(this)
-                  .attr('class', 'genre-tag')
-                  .style('background-color', bgColor)
-                  .style('color', lightness < 0.8 ? '#fff' : '#000')
-                  .text((d) => d);
-              });
+            createGenreTags(tooltip, data['genres']);
 
             return tooltip.transition(300).style('opacity', 1);
           })
