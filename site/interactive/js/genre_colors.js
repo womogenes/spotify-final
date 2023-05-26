@@ -8,18 +8,21 @@ import { artistData, genreMap } from './data_export.js';
 let bigGenreColors = {
   'hip hop': '#ea5545',
   rap: '#f46a9b',
-  pop: '#7f7f7f',
   edm: '#ef9b20',
   indie: '#ede15b',
   soul: '#86cf32',
   jazz: '#87bc45',
   rock: '#27aeef',
   country: '#b33dc6',
+  pop: '#7f7f7f',
   other: '#eeeeee',
 };
 
 const pickBigGenre = (genreList) => {
-  return genreMap[genreList.find((g) => genreMap[g] !== 'other')] || 'other';
+  const bigGenres = new Set(genreList.map((g) => genreMap[g]));
+  for (let bigGenre in bigGenreColors) {
+    if (bigGenres.has(bigGenre)) return bigGenre;
+  }
 };
 window.pickBigGenre = pickBigGenre;
 
