@@ -140,7 +140,7 @@ To the right of these artists are classic rock and album rock artists such as [Q
 
 Finally, the top of the rock cluster contains metal-adjacent rock artists such as [AC/DC](https://open.spotify.com/artist/711MCceyCBcFnzjGY4Q7Un?si=48431d271987429f), [Guns N' Roses](https://open.spotify.com/artist/3qm84nBOXUEQ2vnTfUTTFC?si=b95beca26c424928), and [Metallica](https://open.spotify.com/artist/2ye2Wgw4gimLv2eAKyk1NB?si=0cce223b75354f88).
 
-Along the top of the graph, next to the rock cluster, is a small country featuring artists such as [Carrie Underwood]() and [Blake Shelton](). There are also many artists who produce Christian music located in that cluster. 
+Along the top of the graph, next to the rock cluster, is a small country featuring artists such as [Carrie Underwood](https://open.spotify.com/artist/4xFUf1FHVy696Q1JQZMTRj?si=babdc16fb18f491b) and [Blake Shelton](https://open.spotify.com/artist/1UTPBmNbXNTittyMJrNkvw?si=60f43f5fd9414b0f). There are also many artists who produce Christian music located in that cluster. 
 
 Finally, artists considered "pop" are scattered all around the map. This likely comes from the fact that "pop" is a pretty generic tag, and encompasses a wide range of musical sounds. 
 Furthermore, many of the genres for which we already have classifications have an associated "pop" version of that genre, so that pop has become a sort of default genre assignment under our genre assignment scheme for some artists.
