@@ -129,7 +129,7 @@ The right side of the map contains a very large and broad rock cluster. Rock is 
 annotate rock cluster image
 --->
 
-Towards the bottom of the rock cluster are artists that fall under the "art rock" genre such as [David Bowie](https://open.spotify.com/artist/0oSGxfWSnnOXhD2fKuz2Gy?si=f1b417283ce0447a), [Pink Floyd](https://open.spotify.com/artist/0k17h0D3J5VfsdmQ1iZtE9?si=009e85d058024275), and [The Beatles](https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2?si=761ce088be954cfb).
+Towards the bottom of the rock cluster are artists that fall under the "art rock" genre such as <nobr>[David Bowie](https://open.spotify.com/artist/0oSGxfWSnnOXhD2fKuz2Gy?si=f1b417283ce0447a)</nobr>, [Pink Floyd](https://open.spotify.com/artist/0k17h0D3J5VfsdmQ1iZtE9?si=009e85d058024275), and [The Beatles](https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2?si=761ce088be954cfb).
 Like the indie cluster below and to the left of this sub-cluster, these artists have a more mellow and soft rock sound.
 
 A bit to the left of the art rock sub-cluster, closer to the center, are artists in the rock genre that are more alternative and funk rock-adjacent, with artists such as [Red Hot Chili Peppers](https://open.spotify.com/artist/0L8ExT028jH3ddEcZwqJJ5?si=842d841ee4d249c4), [Weezer](https://open.spotify.com/artist/3jOstUTkEu2JkjvRdBA5Gu?si=df624abe227140e9), and [Nirvana](https://open.spotify.com/artist/6olE6TJLqED3rqDCT0FyPh?si=a5aa362099194aac). 
