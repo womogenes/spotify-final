@@ -6,9 +6,23 @@
   #artist-container .bio {
     height: 100px;
   }
+  #artist-container img {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  #artist-container .header {
+    gap: 10px !important;
+  }
 
   #top-container {
     width: 100% !important;
+  }
+
+  #artist-container .tags {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
   }
 }
 
@@ -22,10 +36,22 @@
     max-width: 250px;
   }
 
+  #settings-container {
+    top: 1em;
+    right: 1em;
+    left: auto !important;
+    bottom: auto !important;
+  }
+
   #artist-container .bio {
     height: auto;
     overflow-y: auto;
   }
+}
+
+button {
+  font-family: 'Inter', sans-serif;
+  font-size: 100%;
 }
 
 .main-container {
@@ -55,6 +81,9 @@
   font-weight: normal;
   max-width: 80%;
 }
+.loading-text p {
+  margin: 0.5em;
+}
 
 #visualization {
   position: absolute;
@@ -82,6 +111,78 @@
   display: block;
 }
 
+/* Settings button */
+#settings-container {
+  position: absolute;
+  left: 1em;
+  bottom: 1em;
+  font-size: 100%;
+
+  pointer-events: all;
+}
+
+#settings-modal {
+  border: 1px solid #00000020;
+  box-shadow: #00000040 0px 2px 5px -2px;
+  border-radius: 5px;
+  background-color: #fff;
+
+  padding: 1em;
+  margin-bottom: 1em;
+}
+#settings-modal p {
+  margin: 0;
+  margin-bottom: 0.5em;
+}
+#settings-modal form {
+  display: flex;
+  margin: 0;
+  gap: 5px;
+}
+#settings-modal form input {
+  display: none;
+}
+#settings-modal form label {
+  padding: 5px 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+#settings-modal form label:hover {
+  background-color: #e8e8e8;
+}
+#settings-modal form input:checked + label {
+  background-color: #eee;
+}
+
+#settings-container button {
+  border: 1px solid #00000020;
+  box-shadow: #00000040 0px 2px 5px -2px;
+  border-radius: 9999px;
+
+  background-color: #fff;
+  padding: 10px;
+  font-size: 1.5em;
+
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+#settings-container button:hover {
+  background-color: #eee;
+}
+#settings-container button:active {
+  background-color: #ddd;
+}
+
+#settings-container button i {
+  transition: transform 0.5s;
+}
+#settings-container button.open i {
+  transform: rotate(60deg);
+}
+
+/* Legend */
 #legend-container {
   position: absolute;
   right: 1em;
@@ -105,22 +206,40 @@
 }
 
 #legend {
-  margin-top: 0.5em;
+  margin: 0.5em 0 0 0;
   display: flex;
   flex-direction: column;
 }
+#legend:empty {
+  margin-top: 0;
+}
 
 .legend-item {
+  background-color: transparent;
+  border-radius: 5px;
+}
+.legend-item label {
   display: flex;
   gap: 10px;
   align-items: center;
   width: 100%;
-  cursor: pointer;
   padding: 5px 10px;
   border-radius: 5px;
   box-sizing: border-box;
+  border: none;
+  background-color: #fff;
 
   pointer-events: all;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.legend-item:focus-within {
+  z-index: 20;
+  background-color: #e8e8e8;
+}
+
+.legend-item input:checked + label {
+  background-color: #eee;
 }
 
 .legend-color {
@@ -137,7 +256,7 @@
   opacity: 0;
   padding: 1em;
   max-width: 220px;
-  z-index: 10;
+  z-index: 20;
 
   background-color: #fff;
   /* backdrop-filter: blur(10px);
@@ -148,15 +267,22 @@
   border-radius: 5px;
   pointer-events: none;
 }
-
 #tooltip .tags {
+  margin-bottom: 0;
+}
+#tooltip .tags:empty {
+  margin-top: 0;
+}
+
+.tags {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
   gap: 5px;
+  margin: 0.5em 0;
 }
 
-#tooltip .genre-tag {
+.tags .genre-tag {
   display: inline-block;
   border-radius: 15px;
   padding: 3px 10px 3px 10px;
@@ -209,14 +335,21 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  overflow: hidden;
 }
 
 #artist-container .info .spotify-href a {
   color: #009e37;
 }
+#artist-container .info .spotify-href a::after {
+  background-color: #009e37;
+}
 
 #artist-container .info .name {
   margin-bottom: 0.2em;
+}
+#artist-container .info .tags {
+  margin-top: 0;
 }
 
 #artist-container .info p {
@@ -265,7 +398,7 @@
 /* Search container */
 #top-container {
   position: static;
-  max-width: 440px;
+  width: 440px;
 }
 
 #search-container {

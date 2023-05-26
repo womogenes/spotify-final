@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1"
-    />
-    <title>Spotify MPD analysis</title>
-
     <link rel="stylesheet" href="/css/a.css" />
     <link rel="stylesheet" href="/css/input.css" />
     <link rel="stylesheet" href="/css/interactive.css" />
@@ -38,7 +30,7 @@
     ></script>
 
     <script src="/interactive/js/libs/d3.v7.min.js"></script>
-    <script src="/interactive/js/data_export.js" type="module" defer></script>
+    <script src="/interactive/js/data_export.js" type="module"></script>
     <script src="/interactive/js/utils.js" type="module" defer></script>
     <script src="/interactive/js/colors.js" type="module" defer></script>
     <script src="/interactive/js/genre_colors.js" type="module" defer></script>
@@ -51,19 +43,10 @@
       <div class="loading-text">
         <p>Loading... <i class="fas fa-circle-notch fa-spin"></i></p>
         <p>If the data doesn't appear soon, consider reloading the page.</p>
+        <p>(Also, loading takes longer on mobile for some reason.)</p>
       </div>
-      <div id="visualization">
-        <div id="tooltip">
-          <h3 class="title"></h3>
-          <div class="tags"></div>
-        </div>
-      </div>
-      <div id="content-container">
-        <div id="legend-container" x-data="{ expanded: true }">
-          <h2 @click="expanded = !expanded">Legend</h2>
-          <div x-show="expanded" x-collapse id="legend"></div>
-        </div>
 
+      <div id="content-container">
         <div id="top-container">
           <div id="search-container" x-data="{ name: '' }">
             <label for="#search-input" hidden="true"
@@ -109,6 +92,7 @@
               <img src="" alt="" />
               <div class="info">
                 <h2 class="name">Artist name</h2>
+                <div class="tags"></div>
                 <p class="spotify-href">
                   <a href="" target="_blank">
                     <i class="fa-brands fa-spotify"></i>
@@ -124,6 +108,41 @@
               <span>Here's a testing bio</span>
             </p>
           </div>
+        </div>
+
+        <div id="settings-container" x-data="{ open: false }">
+          <div id="settings-modal" x-show="open">
+            <p>Number of artists to display</p>
+            <form id="n-artists-selection">
+              <input type="radio" id="n-500-artists" name="n-artists" value="500" checked>
+              <label for="n-500-artists">500</label><br>
+
+              <input type="radio" id="n-1000-artists" name="n-artists" value="1000">
+              <label for="n-1000-artists">1000</label><br>
+
+              <input type="radio" id="n-2500-artists" name="n-artists" value="2500">
+              <label for="n-2500-artists">2500</label>
+            </form>
+          </div>
+          <button :class="{ 'open' : open }" @click="open = !open"><i class="fa-solid fa-gear"></i></button>
+        </div>
+        
+        <div id="legend-container" x-data="{ expanded: false }">
+          <h2 @keydown.enter="expanded = !expanded" @click="() => {
+            expanded = !expanded;
+            highlightArtists(() => true, 1, 1)
+            
+            const checkedEl = d3.select('#legend input:checked').node();
+            if (checkedEl) checkedEl.checked = false;
+          }" tabindex="0">Legend</h2>
+          <form id="legend" x-show="expanded" x-collapse></form>
+        </div>
+      </div>
+
+      <div id="visualization">
+        <div id="tooltip">
+          <h3 class="title"></h3>
+          <div class="tags"></div>
         </div>
       </div>
     </div>

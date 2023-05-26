@@ -28,6 +28,7 @@ const getCurTransform = () => {
   return [curX, curY, curScale];
 };
 
+// Zooming stuff
 const onZoom = async (e) => {
   const zoomLevel = e.transform.k;
   const threshold = 5;
@@ -65,6 +66,24 @@ window.onSearchSubmit = (name) => {
   zoomToArtist(obj[0]);
 };
 
+const createGenreTags = (container, genres) => {
+  container
+    .select('.tags')
+    .selectAll('span')
+    .data(genres)
+    .join('span')
+    .each(function (genre) {
+      let bgColor = genreColor(genre);
+      let lightness = luma(bgColor);
+
+      d3.select(this)
+        .attr('class', 'genre-tag')
+        .style('background-color', bgColor)
+        .style('color', lightness < 0.8 ? '#fff' : '#000')
+        .text((d) => d);
+    });
+};
+
 window.zoomToArtist = (id) => {
   // Utility function for zooming to artist
   // https://observablehq.com/@d3/programmatic-zoom
@@ -93,6 +112,7 @@ window.zoomToArtist = (id) => {
     .attr('src', data['images'][0]['url'])
     .attr('alt', `Profile im age of ${data['name']}`);
   box.select('.name').text(data['name']);
+  createGenreTags(box, data['genres']);
   box
     .select('.info .spotify-href a')
     .attr('href', data['external_urls']['spotify']);
@@ -115,38 +135,75 @@ window.zoomToArtist = (id) => {
   document.querySelector('#artist-container .bio').scrollTop = 0; // Reset scroll on bio for mobile
 };
 
-// Colors
-// TODO: don't hard-code this
+// Settings: # of artists
+const nArtistsButtons = d3.selectAll('#n-artists-selection input');
+nArtistsButtons.on('change', function (e, d) {
+  let n = parseInt(e.target.value);
+  localStorage.setItem('n-artists', n);
+
+  // Re-render points
+  console.log(`rerendering with ${n} points`);
+  renderPoints(n);
+});
 
 // Plot key in the debug box
-function resetGenreSelection(e) {
-  d3.select(this).style('background-color', '');
-  g.selectAll('g').each(function () {
-    d3.select(this).attr('opacity', 1);
-  });
-}
 d3.select('#legend')
   .selectAll('div')
   .data(genreLegend)
   .join('div')
   .attr('class', 'legend-item')
-  .on('mouseover', function (e, d) {
-    d3.select(this).style('background-color', '#00000020');
-    g.selectAll('g').each(function (itemData) {
-      if (pickBigGenre(artistData[itemData[0]]['genres']) !== d[0]) {
-        d3.select(this).attr('opacity', 0.05);
-      }
-    });
-  })
-  .on('mouseout', resetGenreSelection);
+  .attr('tabindex', '0');
+
+window.highlightArtists = (condition, on, off) => {
+  // Condition takes in an artist id and returns a boolean
+  g.selectAll('g').each(function (itemData) {
+    d3.select(this)
+      .transition(300)
+      .attr('opacity', condition(itemData[0]) ? on : off);
+  });
+};
+
+const encodeGenre = (genre) => {
+  return genre.replace(' ', '-');
+};
 
 d3.selectAll('.legend-item')
+  .append('input')
+  .attr('type', 'radio')
+  .attr('id', (d) => `legend-genre-${encodeGenre(d[0])}`)
+  .attr('name', 'genre-select')
+  .attr('value', (d) => d[0])
+  .style('visibility', 'hidden')
+  .style('position', 'absolute');
+
+d3.selectAll('.legend-item')
+  .append('label')
+  .attr('for', (d) => `legend-genre-${encodeGenre(d[0])}`)
   .append('span')
   .attr('class', 'legend-color')
   .style('background-color', (d) => d[1]);
-d3.selectAll('.legend-item')
+d3.selectAll('.legend-item label')
   .append('span')
   .text((d) => d[0]);
+
+d3.selectAll('.legend-item label').on('click', function (e, d) {
+  e.preventDefault();
+
+  const inputEl = d3.select(`#legend-genre-${encodeGenre(d[0])}`);
+
+  if (inputEl.node().checked) {
+    // Deselect
+    inputEl.node().checked = false;
+    highlightArtists(() => true, 1, 1);
+  } else {
+    inputEl.node().checked = true;
+    highlightArtists(
+      (id) => pickBigGenre(artistData[id]['genres']) === d[0],
+      1,
+      0.05
+    );
+  }
+});
 
 // Main rendering
 let avatar_size = 0.5;
@@ -170,77 +227,91 @@ if (!mobileCheck()) {
   });
 }
 
-window.renderPoints = (r) => {
-  g.style('opacity', 0);
+window.renderPoints = (N) => {
+  const createGroup = (enter) => {
+    const gs = enter
+      .append('g')
+      .attr('transform', (d) => `translate(${d[1][0]},${d[1][1]})`)
+      .attr('id', (d) => `g_${d[0]}`)
+      .style('cursor', 'pointer')
+      .attr('opacity', 1)
+      .each(function (d) {
+        // Construct circle and image
+        const artistID = d[0];
+        const data = artistData[artistID];
+        const mainGenre = pickBigGenre(data['genres']);
+        const avatarURL = data['images'][2]?.url;
+        data['bio'] = data['bio'];
+
+        d3.select(this)
+          .append('circle')
+          .attr('r', 0.3)
+          .attr('fill', genreColor(mainGenre))
+          .on('mouseover', (e) => {
+            if (mobileCheck()) return;
+
+            tooltip.select('.title').text(data['name']);
+            tooltip.style('display', 'block');
+            createGenreTags(tooltip, data['genres']);
+
+            return tooltip.transition(300).style('opacity', 1);
+          })
+          .on('mouseout', (e) => {
+            tooltip.transition(300).style('opacity', 0);
+          })
+          .on('click', (e) => {
+            zoomToArtist(artistID);
+          });
+
+        if (!avatarURL) return;
+        d3.select(this)
+          .append('image')
+          .attr('xlink:href', avatarURL)
+          .style('opacity', 0)
+          .style('display', 'none')
+          .attr('width', avatar_size)
+          .attr('height', avatar_size)
+          .attr(
+            'transform',
+            `translate(${-avatar_size / 2},${-avatar_size / 2})`
+          )
+          .attr('preserveAspectRatio', 'xMidYMid slice')
+          .attr('clip-path', 'url(#avatarClipObj)')
+          .style('pointer-events', 'none');
+      });
+
+    gs.transition(300).attr('opacity', 1);
+  };
 
   g.selectAll('g')
-    .data(points)
-    .join('g')
-    .attr('transform', (d) => `translate(${d[1][0]},${d[1][1]})`)
-    .attr('id', (d) => `g_${d[0]}`)
-    .style('cursor', 'pointer')
-    .each(function (d) {
-      // Construct circle and image
-      const artistID = d[0];
-      const data = artistData[artistID];
-      const mainGenre = pickBigGenre(data['genres']);
-      const avatarURL = data['images'][2]?.url;
-      data['bio'] = data['bio'];
-
-      d3.select(this)
-        .append('circle')
-        .attr('r', r)
-        .attr('fill', genreColor(mainGenre))
-        .on('mouseover', (e) => {
-          if (mobileCheck()) return;
-
-          tooltip.select('.title').text(data['name']);
-          tooltip.style('display', 'block');
-          tooltip
-            .select('.tags')
-            .style('margin-top', data['genres'].length > 0 ? '0.5em' : '0')
-            .selectAll('span')
-            .data(data['genres'])
-            .join('span')
-            .each(function (genre) {
-              let bgColor = genreColor(genre);
-              let lightness = luma(bgColor);
-
-              d3.select(this)
-                .attr('class', 'genre-tag')
-                .style('background-color', bgColor)
-                .style('color', lightness < 0.8 ? '#fff' : '#000')
-                .text((d) => d);
-            });
-
-          return tooltip.transition(300).style('opacity', 1);
-        })
-        .on('mouseout', (e) => {
-          tooltip.transition(300).style('opacity', 0);
-        })
-        .on('click', (e) => {
-          zoomToArtist(artistID);
-        });
-
-      if (!avatarURL) return;
-      d3.select(this)
-        .append('image')
-        .attr('xlink:href', avatarURL)
-        .style('opacity', 0)
-        .style('display', 'none')
-        .attr('width', avatar_size)
-        .attr('height', avatar_size)
-        .attr('transform', `translate(${-avatar_size / 2},${-avatar_size / 2})`)
-        .attr('preserveAspectRatio', 'xMidYMid slice')
-        .attr('clip-path', 'url(#avatarClipObj)')
-        .style('pointer-events', 'none');
-    });
+    .data(points.slice(0, N), (d) => d[0])
+    .join(
+      createGroup,
+      (update) => {},
+      (exit) =>
+        exit
+          .transition(300)
+          .attr('opacity', 0)
+          .on('end', function () {
+            this.remove();
+          })
+    );
 
   d3.select('.loading-text').remove();
-  g.transition(300).style('opacity', 1);
 };
 
-renderPoints(0.3);
+g.style('opacity', 0);
+
+let N = localStorage.getItem('n-artists') || 500;
+document.querySelector(`#n-${N}-artists`).checked = true;
+
+window.setTimeout(
+  () => {
+    renderPoints(N);
+    g.transition(300).style('opacity', 1);
+  },
+  mobileCheck() ? 2000 : 0
+);
 
 // Figure out what .join actually does (enter, exit, etc.)
 // https://www.d3indepth.com/zoom-and-pan/
