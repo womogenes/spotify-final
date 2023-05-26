@@ -108,13 +108,25 @@
           </div>
         </div>
 
-        <div id="settings-container" x-data="{ open: false }" @click="open = !open">
-          <div id="settings-modal" x-show="open" x-collapse><p>Hello this is text</p></div>
-          <button :class="{ 'open' : open }"><i class="fa-solid fa-gear"></i></button>
+        <div id="settings-container" x-data="{ open: false }">
+          <div id="settings-modal" x-show="open">
+            <p>Number of artists to display</p>
+            <form id="n-artists-selection">
+              <input type="radio" id="n-500-artists" name="n-artists" value="500" checked>
+              <label for="n-500-artists">500</label><br>
+
+              <input type="radio" id="n-1000-artists" name="n-artists" value="1000">
+              <label for="n-1000-artists">1000</label><br>
+
+              <input type="radio" id="n-2500-artists" name="n-artists" value="2500">
+              <label for="n-2500-artists">2500</label>
+            </form>
+          </div>
+          <button :class="{ 'open' : open }" @click="open = !open"><i class="fa-solid fa-gear"></i></button>
         </div>
         
         <div id="legend-container" x-data="{ expanded: true }">
-          <h2 @click="expanded = !expanded" tabindex="0">Legend</h2>
+          <h2 @keydown.enter="expanded = !expanded" @click="expanded = !expanded" tabindex="0">Legend</h2>
           <div id="legend" x-show="expanded" x-collapse></div>
         </div>
       </div>

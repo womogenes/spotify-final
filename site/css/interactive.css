@@ -105,9 +105,25 @@ button {
   padding: 1em;
   margin-bottom: 1em;
 }
-
 #settings-modal p {
   margin: 0;
+  margin-bottom: 0.5em;
+}
+#settings-modal form {
+  display: flex;
+  margin: 0;
+}
+#settings-modal form input {
+  display: none;
+}
+#settings-modal form label {
+  padding: 5px 10px;
+  background-color: #00000000;
+  border-radius: 5px;
+  transition: background-color 0.5s;
+}
+#settings-modal form input:checked + label {
+  background-color: #eee;
 }
 
 #settings-container button {
