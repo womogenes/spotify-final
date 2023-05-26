@@ -107,7 +107,7 @@ Our implementation of PCA projects high-dimension data onto a two-dimensional gr
 ## The PCA Map
 Finally, we get to the PCA map of the top 2500 artists. 
 
-### a note on artist colors
+### A note on artist colors
 To assign artist colors by genre, we created a list of broad genres that would have their own individual colors. We used the Spotify API to generate a list of raw genres for each artist, then used a substring search to categorize these raw genres into the broad genres. 
 
 In the case where artists had two or more raw genre tags that fell under different broad genres, we colored their associated data point with the color of the genre that came first alphabetically, which creates a slight bias in the colors; however, given the size of the data it would have been difficult to assign genres manually. 
