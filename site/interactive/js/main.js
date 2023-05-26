@@ -280,7 +280,7 @@ window.renderPoints = (N) => {
           .style('pointer-events', 'none');
       });
 
-    // gs.transition(300).style('opacity', 1);
+    gs.transition(300).attr('opacity', 1);
   };
 
   g.selectAll('g')
@@ -305,8 +305,13 @@ g.style('opacity', 0);
 let N = localStorage.getItem('n-artists') || 500;
 document.querySelector(`#n-${N}-artists`).checked = true;
 
-renderPoints(N);
-g.transition(300).style('opacity', 1);
+window.setTimeout(
+  () => {
+    renderPoints(N);
+    g.transition(300).style('opacity', 1);
+  },
+  mobileCheck() ? 2000 : 0
+);
 
 // Figure out what .join actually does (enter, exit, etc.)
 // https://www.d3indepth.com/zoom-and-pan/

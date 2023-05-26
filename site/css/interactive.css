@@ -81,6 +81,9 @@ button {
   font-weight: normal;
   max-width: 80%;
 }
+.loading-text p {
+  margin: 0.5em;
+}
 
 #visualization {
   position: absolute;

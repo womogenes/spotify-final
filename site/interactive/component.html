@@ -30,7 +30,7 @@
     ></script>
 
     <script src="/interactive/js/libs/d3.v7.min.js"></script>
-    <script src="/interactive/js/data_export.js" type="module" defer></script>
+    <script src="/interactive/js/data_export.js" type="module"></script>
     <script src="/interactive/js/utils.js" type="module" defer></script>
     <script src="/interactive/js/colors.js" type="module" defer></script>
     <script src="/interactive/js/genre_colors.js" type="module" defer></script>
@@ -43,6 +43,7 @@
       <div class="loading-text">
         <p>Loading... <i class="fas fa-circle-notch fa-spin"></i></p>
         <p>If the data doesn't appear soon, consider reloading the page.</p>
+        <p>(Also, loading takes longer on mobile for some reason.)</p>
       </div>
 
       <div id="content-container">
@@ -126,7 +127,7 @@
           <button :class="{ 'open' : open }" @click="open = !open"><i class="fa-solid fa-gear"></i></button>
         </div>
         
-        <div id="legend-container" x-data="{ expanded: true }">
+        <div id="legend-container" x-data="{ expanded: false }">
           <h2 @keydown.enter="expanded = !expanded" @click="() => {
             expanded = !expanded;
             highlightArtists(() => true, 1, 1)
