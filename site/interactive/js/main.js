@@ -147,12 +147,6 @@ nArtistsButtons.on('change', function (e, d) {
 });
 
 // Plot key in the debug box
-function resetGenreSelection(e) {
-  d3.select(this).style('background-color', '#fff');
-  g.selectAll('g').each(function () {
-    d3.select(this).attr('opacity', 1);
-  });
-}
 d3.select('#legend')
   .selectAll('div')
   .data(genreLegend)
@@ -160,7 +154,7 @@ d3.select('#legend')
   .attr('class', 'legend-item')
   .attr('tabindex', '0');
 
-const highlightArtists = (condition, on, off) => {
+window.highlightArtists = (condition, on, off) => {
   // Condition takes in an artist id and returns a boolean
   g.selectAll('g').each(function (itemData) {
     d3.select(this)
@@ -297,7 +291,7 @@ window.renderPoints = (N) => {
       (exit) =>
         exit
           .transition(300)
-          .style('opacity', 0)
+          .attr('opacity', 0)
           .on('end', function () {
             this.remove();
           })
