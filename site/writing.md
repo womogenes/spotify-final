@@ -5,7 +5,7 @@
 	<p><i>View the source code for this project <a href="https://github.com/womogenes/spotify-final" target="_blank">here</a>.</i></p>
 </div>
 
-![alt text](images/pcanolegend2.png)
+![](images/pcanolegend2.png)
 
 ## Introduction
 
@@ -58,10 +58,10 @@ Spotify's [Million Playlist Dataset](https://www.aicrowd.com/challenges/spotify-
 
 On average, playlists contain 66 tracks from 38 distinct artists and 50 different albums.
 Here's a visualization of the distribution of playlist length across all the playlists:
-![alt text](images/artistdistrib.png)
+![](images/artistdistrib.png)
 
 And a visualization of the number of distinct artists represented per playlist:
-![alt text](images/trackdistrib.png)
+![](images/trackdistrib.png)
 
 Both distributions have a right skew, but more curiously they are not normal distributions but rather decrease exponentially in frequency for greater numbers of artists and tracks.
 
@@ -81,7 +81,7 @@ In other words, the more times two artists both have many songs in the same play
 
 We then created a 2500 by 2500 matrix containing artist interaction scores for each of the 6250000 ordered pairs of artists. After ordering the rows and columns in order of artist popularity and coloring cells by value (darker cells correspond to higher values)
 
-![alt text](images/correlationmatrix2.png)
+![](images/correlationmatrix2.png)
 
 It makes sense that the highest values occur towards the top and the left of the matrix, since artists are sorted with respect to metrics of playlist inclusion and, broadly speaking, the total artist interaction score increases the more an artist is included in a playlist.
 however, the fact that the top left corner still contains the highest values indicates that popular artists are still more frequently put in playlists with other popular artists. 
@@ -91,9 +91,15 @@ however, the fact that the top left corner still contains the highest values ind
 Principal Component Analysis (PCA) is a technique for analyzing and visualizing high-dimensional data, such as our artist interaction matrix. 
 Broadly speaking, the method attempts to increase data interprability by reducing the number of dimensions (usually to just 2 dimensions) while still preserving as much information as possible.
 
+As a general principle, PCA seeks to keep far-apart points far apart and keep close-together points close together in the smaller-dimensional projection.
+
 <!---
 ### Some Technical Mathematical Details
-For those who are familiar with linear algebra: 
+*This section requires some linear algebra background; feel free to skip over it!*
+
+PCA relies on decomposing a matrix into a product of three matrices in a process known as *singular value decomposition* (SVD):
+
+$$M=U\Sigma V^\*$$
 --->
 
 ## Limitations of our Analysis
@@ -148,3 +154,5 @@ Furthermore, many of the genres for which we already have classifications have a
 ## Interactive PCA map 
 
 Finally, here is the interactive PCA map in all its glory. 
+
+The interactive defaults to displaying only the top 500 artists for performance reasons; to display more artists, click the settings icon on the bottom left (the interactive may lag). 
