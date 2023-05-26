@@ -8,7 +8,7 @@ import { artistData, genreMap } from './data_export.js';
 let bigGenreColors = {
   'hip hop': '#ea5545',
   rap: '#f46a9b',
-  pop: '#8c564b',
+  pop: '#7f7f7f',
   edm: '#ef9b20',
   indie: '#ede15b',
   soul: '#86cf32',
