@@ -158,23 +158,58 @@ d3.select('#legend')
   .data(genreLegend)
   .join('div')
   .attr('class', 'legend-item')
-  .on('mouseover', function (e, d) {
-    d3.select(this).style('background-color', '#eee');
-    g.selectAll('g').each(function (itemData) {
-      if (pickBigGenre(artistData[itemData[0]]['genres']) !== d[0]) {
-        d3.select(this).attr('opacity', 0.05);
-      }
-    });
-  })
-  .on('mouseout', resetGenreSelection);
+  .attr('tabindex', '0');
+
+const highlightArtists = (condition, on, off) => {
+  // Condition takes in an artist id and returns a boolean
+  g.selectAll('g').each(function (itemData) {
+    d3.select(this)
+      .transition(300)
+      .attr('opacity', condition(itemData[0]) ? on : off);
+  });
+};
+
+const encodeGenre = (genre) => {
+  return genre.replace(' ', '-');
+};
 
 d3.selectAll('.legend-item')
+  .append('input')
+  .attr('type', 'radio')
+  .attr('id', (d) => `legend-genre-${encodeGenre(d[0])}`)
+  .attr('name', 'genre-select')
+  .attr('value', (d) => d[0])
+  .style('visibility', 'hidden')
+  .style('position', 'absolute');
+
+d3.selectAll('.legend-item')
+  .append('label')
+  .attr('for', (d) => `legend-genre-${encodeGenre(d[0])}`)
   .append('span')
   .attr('class', 'legend-color')
   .style('background-color', (d) => d[1]);
-d3.selectAll('.legend-item')
+d3.selectAll('.legend-item label')
   .append('span')
   .text((d) => d[0]);
+
+d3.selectAll('.legend-item label').on('click', function (e, d) {
+  e.preventDefault();
+
+  const inputEl = d3.select(`#legend-genre-${encodeGenre(d[0])}`);
+
+  if (inputEl.node().checked) {
+    // Deselect
+    inputEl.node().checked = false;
+    highlightArtists(() => true, 1, 1);
+  } else {
+    inputEl.node().checked = true;
+    highlightArtists(
+      (id) => pickBigGenre(artistData[id]['genres']) === d[0],
+      1,
+      0.05
+    );
+  }
+});
 
 // Main rendering
 let avatar_size = 0.5;
@@ -205,6 +240,7 @@ window.renderPoints = (N) => {
       .attr('transform', (d) => `translate(${d[1][0]},${d[1][1]})`)
       .attr('id', (d) => `g_${d[0]}`)
       .style('cursor', 'pointer')
+      .attr('opacity', 1)
       .each(function (d) {
         // Construct circle and image
         const artistID = d[0];

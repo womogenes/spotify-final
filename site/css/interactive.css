@@ -207,8 +207,15 @@ button {
   display: flex;
   flex-direction: column;
 }
+#legend:empty {
+  margin-top: 0;
+}
 
 .legend-item {
+  background-color: transparent;
+  border-radius: 5px;
+}
+.legend-item label {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -220,9 +227,16 @@ button {
   background-color: #fff;
 
   pointer-events: all;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
-.legend-item:focus {
-  z-index: 10;
+.legend-item:focus-within {
+  z-index: 20;
+  background-color: #e8e8e8;
+}
+
+.legend-item input:checked + label {
+  background-color: #eee;
 }
 
 .legend-color {
@@ -331,6 +345,9 @@ button {
 #artist-container .info .name {
   margin-bottom: 0.2em;
 }
+#artist-container .info .tags {
+  margin-top: 0;
+}
 
 #artist-container .info p {
   margin: 0;
@@ -378,7 +395,7 @@ button {
 /* Search container */
 #top-container {
   position: static;
-  max-width: 440px;
+  width: 440px;
 }
 
 #search-container {
