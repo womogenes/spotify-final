@@ -84,19 +84,22 @@ const createGenreTags = (container, genres) => {
     });
 };
 
-window.zoomToArtist = (id) => {
-  // Utility function for zooming to artist
-  // https://observablehq.com/@d3/programmatic-zoom
-  let toTransform = pointsObj[id];
-
+window.setZoomPan = (coords, scale) => {
   svg
     .transition()
     .duration(1500)
     .call(
       zoom.transform,
-      d3.zoomIdentity.scale(20).translate(-toTransform[0], -toTransform[1]),
-      [toTransform[0], toTransform[1]]
+      d3.zoomIdentity.scale(scale).translate(-coords[0], -coords[1]),
+      coords
     );
+};
+
+window.zoomToArtist = (id) => {
+  // Utility function for zooming to artist
+  // https://observablehq.com/@d3/programmatic-zoom
+  let toTransform = pointsObj[id];
+  setZoomPan(toTransform, 20);
 
   // Prep the box
   const box = d3.select('#artist-container');

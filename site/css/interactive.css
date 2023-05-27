@@ -36,7 +36,7 @@
     max-width: 250px;
   }
 
-  #settings-container {
+  #menu-container {
     top: 1em;
     right: 1em;
     left: auto !important;
@@ -112,7 +112,7 @@ button {
 }
 
 /* Settings button */
-#settings-container {
+#menu-container {
   position: absolute;
   left: 1em;
   bottom: 1em;
@@ -156,29 +156,30 @@ button {
   background-color: #eee;
 }
 
-#settings-container button {
+#menu-container button {
   border: 1px solid #00000020;
   box-shadow: #00000040 0px 2px 5px -2px;
   border-radius: 9999px;
 
   background-color: #fff;
   padding: 10px;
-  font-size: 1.5em;
+  margin-right: 5px;
+  font-size: 1.2em;
 
   cursor: pointer;
   transition: background-color 0.3s;
 }
-#settings-container button:hover {
+#menu-container button:hover {
   background-color: #eee;
 }
-#settings-container button:active {
+#menu-container button:active {
   background-color: #ddd;
 }
 
-#settings-container button i {
+#menu-container button i {
   transition: transform 0.5s;
 }
-#settings-container button.open i {
+#menu-container button.open i {
   transform: rotate(60deg);
 }
 

@@ -110,7 +110,7 @@
           </div>
         </div>
 
-        <div id="settings-container" x-data="{ open: false }">
+        <div id="menu-container" x-data="{ open: false }">
           <div id="settings-modal" x-show="open">
             <p>Number of artists to display</p>
             <form id="n-artists-selection">
@@ -125,15 +125,17 @@
             </form>
           </div>
           <button :class="{ 'open' : open }" @click="open = !open"><i class="fa-solid fa-gear"></i></button>
+
+          <button @click="setZoomPan([0, 0], 1)"><i class="fa-solid fa-home"></i></button>
         </div>
         
         <div id="legend-container" x-data="{ expanded: false }">
           <h2 @keydown.enter="expanded = !expanded" @click="() => {
             expanded = !expanded;
-            highlightArtists(() => true, 1, 1)
+            // highlightArtists(() => true, 1, 1)
             
-            const checkedEl = d3.select('#legend input:checked').node();
-            if (checkedEl) checkedEl.checked = false;
+            // const checkedEl = d3.select('#legend input:checked').node();
+            // if (checkedEl) checkedEl.checked = false;
           }" tabindex="0">Legend</h2>
           <form id="legend" x-show="expanded" x-collapse></form>
         </div>
