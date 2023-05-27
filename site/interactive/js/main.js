@@ -189,7 +189,7 @@ d3.selectAll('.legend-item label')
   .append('span')
   .text((d) => d[0]);
 
-d3.selectAll('.legend-item label').on('click', function (e, d) {
+const selectGenre = function (e, d) {
   e.preventDefault();
 
   const inputEl = d3.select(`#legend-genre-${encodeGenre(d[0])}`);
@@ -206,6 +206,10 @@ d3.selectAll('.legend-item label').on('click', function (e, d) {
       0.05
     );
   }
+};
+d3.selectAll('.legend-item label').on('click', selectGenre);
+d3.selectAll('.legend-item').on('keypress', function (e, d) {
+  if (e.key === 'Enter') selectGenre(e, d);
 });
 
 // Main rendering
