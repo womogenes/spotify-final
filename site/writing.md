@@ -58,10 +58,10 @@ Spotify's [Million Playlist Dataset](https://www.aicrowd.com/challenges/spotify-
 
 On average, playlists contain 66 tracks from 38 distinct artists and 50 different albums.
 Here's a visualization of the distribution of playlist length across all the playlists:
-![](images/artistdistrib.png)
+![](images/trackdistrib.png)
 
 And a visualization of the number of distinct artists represented per playlist:
-![](images/trackdistrib.png)
+![](images/artistdistrib.png)
 
 Both distributions have a right skew, but more curiously they are not normal distributions but rather decrease exponentially in frequency for greater numbers of artists and tracks.
 
@@ -84,7 +84,8 @@ We then created a 2500 by 2500 matrix containing artist interaction scores for e
 ![](images/correlationmatrix2.png)
 
 It makes sense that the highest values occur towards the top and the left of the matrix, since artists are sorted with respect to metrics of playlist inclusion and, broadly speaking, the total artist interaction score increases the more an artist is included in a playlist.
-however, the fact that the top left corner still contains the highest values indicates that popular artists are still more frequently put in playlists with other popular artists. 
+However, the fact that the top left corner still contains the highest values indicates that popular artists are still more frequently put in playlists with other popular artists. 
+Furthermore, the moderately high values along the top and left edges of the matrix indicate that even smaller artists appear with large artists more than they do with other small artists. 
 
 ## PCA (Principal Component Analysis)
 
@@ -92,6 +93,8 @@ Principal Component Analysis (PCA) is a technique for analyzing and visualizing 
 Broadly speaking, the method attempts to increase data interprability by reducing the number of dimensions (usually to just 2 dimensions) while still preserving as much information as possible.
 
 As a general principle, PCA seeks to keep far-apart points far apart and keep close-together points close together in the smaller-dimensional projection.
+
+After normalizing our data by standardizing the columns to have a mean of 0 and a standard deviation of 1 to lessen the effects of the large artist biases, we conducted PCA on our dataset to reduce it from a 2500-dimensional dataset to a 2-dimensional map. 
 
 <!---
 ### Some Technical Mathematical Details
