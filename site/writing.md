@@ -113,6 +113,9 @@ It is difficult, however, to know for sure how severely these issues are manifes
 Another limitation of our analysis comes from the limitations of PCA itself. 
 Our implementation of PCA projects high-dimension data onto a two-dimensional grid and does really well at grouping "similar" artist together, but the actual interpretation of the axes on the PCA map as a whole is unclear.
 
+Finally, the dataset we are working from, while large, is restricted to playlists created by U.S. Spotify users between 2010 and 2017. 
+While a U.S.-focused dataset could potentially show clearer patterns as opposed to a more global dataset because of the relatively homogeneous culture of American music consumption, our analysis does not account for or include artists that rose to prominence after 2017 and is therefore slightly out of date. However, with more data, the analysis could easily be applied to a more recent dataset. 
+
 ## The PCA Map
 Finally, we get to the PCA map of the top 2500 artists. 
 
@@ -133,10 +136,6 @@ As we move down the hip hop/rap cluster, we start seeing some more EDM and dance
 At the bottom of the graph is the "indie" cluster. The indie cluster features artists in the alternative rock genre, such as [Arctic Monkeys](https://open.spotify.com/artist/7Ln80lUS6He07XvHI8qqHH?si=ed03115dfb1f4c40) and [Radiohead](https://open.spotify.com/artist/4Z8W4fKeB5YxbusRsdQVPb?si=0cb8183bf614459b), dreampop, indietronica, and shoegaze artists such as [Glass Animals](https://open.spotify.com/artist/4yvcSjfu4PC0CYQyLy4wSq?si=948616adeb7d4533), and folk and indie pop artists such as [Bon Iver](https://open.spotify.com/artist/4LEiUm1SRbFMgfqnQTwUbQ?si=4d43a97ee2df45e0). It's generally characterized by a slower, guitar-heavy, and sometimes even dreamy sound. 
 
 The right side of the map contains a very large and broad rock cluster. Rock is a generally diverse genre, which is reflected in its breadth on the PCA map.
-
-<!--- 
-annotate rock cluster image
---->
 
 Towards the bottom of the rock cluster are artists that fall under the "art rock" genre such as <nobr>[David Bowie](https://open.spotify.com/artist/0oSGxfWSnnOXhD2fKuz2Gy?si=f1b417283ce0447a)</nobr>, [Pink Floyd](https://open.spotify.com/artist/0k17h0D3J5VfsdmQ1iZtE9?si=009e85d058024275), and [The Beatles](https://open.spotify.com/artist/3WrFJ7ztbogyGnTHbHJFl2?si=761ce088be954cfb).
 Like the indie cluster below and to the left of this sub-cluster, these artists have a more mellow and soft rock sound.
