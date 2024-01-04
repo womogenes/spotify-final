@@ -24,6 +24,10 @@
     overflow-y: hidden;
     white-space: nowrap;
   }
+
+  #legend-container {
+    min-width: 140px;
+  }
 }
 
 @media only screen and (orientation: landscape) and (max-width: 940px) {
@@ -189,7 +193,7 @@ button {
   right: 1em;
   bottom: 1em;
   padding: 1em;
-  min-width: 140px;
+  min-width: 160px;
   box-sizing: border-box;
   pointer-events: all;
 
