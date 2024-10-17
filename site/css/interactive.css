@@ -95,7 +95,6 @@ button {
   top: 0;
   width: 100%;
   height: 100%;
-  z-index: 100;
 }
 
 #content-container {
@@ -422,6 +421,7 @@ button {
 #search-container input {
   flex-grow: 1;
   min-width: 0; /* Fixes weird sizing issue */
+  padding: 0.5rem 0.75rem;
 }
 
 #search-container .search-button {
