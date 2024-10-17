@@ -229,8 +229,8 @@ if (!mobileCheck()) {
   // Following around mouse is only necessary on systems with mouse
   d3.select('#visualization').on('mousemove', function (e) {
     return tooltip
-      .style('top', e.layerY - 10 + 'px')
-      .style('left', e.layerX + 10 + 'px');
+      .style('top', e.clientY - 10 + 'px')
+      .style('left', e.clientX + 10 + 'px');
   });
 }
 
