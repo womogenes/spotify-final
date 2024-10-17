@@ -38,7 +38,6 @@
   </head>
 
   <body>
-
     <div class="main-container">
       <div class="loading-text">
         <p>Loading... <i class="fas fa-circle-notch fa-spin"></i></p>
@@ -103,10 +102,6 @@
                 <p class="followers"></p>
               </div>
             </div>
-
-            <p class="bio">
-              <span>Here's a testing bio</span>
-            </p>
           </div>
         </div>
 
@@ -114,29 +109,55 @@
           <div id="settings-modal" x-show="open">
             <p>Number of artists to display</p>
             <form id="n-artists-selection">
-              <input type="radio" id="n-500-artists" name="n-artists" value="500" checked>
-              <label for="n-500-artists">500</label><br>
+              <input
+                type="radio"
+                id="n-500-artists"
+                name="n-artists"
+                value="500"
+                checked
+              />
+              <label for="n-500-artists">500</label><br />
 
-              <input type="radio" id="n-1000-artists" name="n-artists" value="1000">
-              <label for="n-1000-artists">1000</label><br>
+              <input
+                type="radio"
+                id="n-1000-artists"
+                name="n-artists"
+                value="1000"
+              />
+              <label for="n-1000-artists">1000</label><br />
 
-              <input type="radio" id="n-2500-artists" name="n-artists" value="2500">
+              <input
+                type="radio"
+                id="n-2500-artists"
+                name="n-artists"
+                value="2500"
+              />
               <label for="n-2500-artists">2500</label>
             </form>
           </div>
-          <button :class="{ 'open' : open }" @click="open = !open"><i class="fa-solid fa-gear"></i></button>
+          <button :class="{ 'open' : open }" @click="open = !open">
+            <i class="fa-solid fa-gear"></i>
+          </button>
 
-          <button @click="setZoomPan([0, 0], 1)"><i class="fa-solid fa-home"></i></button>
+          <button @click="setZoomPan([0, 0], 1)">
+            <i class="fa-solid fa-home"></i>
+          </button>
         </div>
-        
+
         <div id="legend-container" x-data="{ expanded: false }">
-          <h2 @keydown.enter="expanded = !expanded" @click="() => {
+          <h2
+            @keydown.enter="expanded = !expanded"
+            @click="() => {
             expanded = !expanded;
             // highlightArtists(() => true, 1, 1)
             
             // const checkedEl = d3.select('#legend input:checked').node();
             // if (checkedEl) checkedEl.checked = false;
-          }" tabindex="0">Legend</h2>
+          }"
+            tabindex="0"
+          >
+            Legend
+          </h2>
           <form id="legend" x-show="expanded" x-collapse></form>
         </div>
       </div>

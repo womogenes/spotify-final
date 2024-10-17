@@ -2,10 +2,12 @@
 
 <div class="subtitle-container">
 	<p>By <a href="https://womogenes.github.io" target="_blank">William Y. Feng</a> and <a href="https://tinyurl.com/ceciliasun" target="_blank">Cecilia Sun</a></p>
+	<p>May 2023</p>
+	<br>
 	<p><i>View the source code for this project <a href="https://github.com/womogenes/spotify-final" target="_blank">here</a>.</i></p>
 </div>
 
-![](images/pcanolegend2.png)
+<a href="/interactive" class="no-underline" style="margin: auto 0; width: 100%">![Map preview](images/pcanolegend2.png)</a>
 
 ## Introduction
 

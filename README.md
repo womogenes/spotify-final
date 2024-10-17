@@ -8,6 +8,6 @@ The full interactive is available at https://spotify-pca-map.netlify.app/interac
 
 ## Project structure
 
-`site/` contains all frontend code.
+`site/` contains all frontend code. `cd` into it and run `pnpm i` then `npx eleventy serve`.
 
 This base directory contains data analysis scripts in the form of Jupyter notebooks.

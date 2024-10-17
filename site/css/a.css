@@ -9,7 +9,7 @@ a {
   position: relative;
 }
 
-a::after {
+a:not(.no-underline)::after {
   content: '';
   position: absolute;
   width: 100%;
