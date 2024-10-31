@@ -1,4 +1,4 @@
-@media only screen and (max-width: 940px) {
+@media only screen and (max-width: 640px) {
   .main-container {
     font-size: smaller;
   }
@@ -192,7 +192,7 @@ button {
   position: absolute;
   right: 1em;
   bottom: 1em;
-  padding: 1em;
+  padding: 0.75em 1em;
   min-width: 160px;
   box-sizing: border-box;
   pointer-events: all;
