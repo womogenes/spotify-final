@@ -79,7 +79,7 @@ const createGenreTags = (container, genres) => {
       d3.select(this)
         .attr('class', 'genre-tag')
         .style('background-color', bgColor)
-        .style('color', lightness < 0.8 ? '#fff' : '#000')
+        .style('color', lightness < 0.7 ? '#fff' : '#000')
         .text((d) => d);
     });
 };

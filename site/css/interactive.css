@@ -160,23 +160,28 @@ button {
   background-color: #eee;
 }
 
-#menu-container button {
+#menu-container button,
+#links-container button {
   border: 1px solid #00000020;
   box-shadow: #00000040 0px 2px 5px -2px;
   border-radius: 9999px;
 
   background-color: #fff;
   padding: 10px;
-  margin-right: 5px;
   font-size: 1.2em;
 
   cursor: pointer;
   transition: background-color 0.3s;
 }
-#menu-container button:hover {
+#menu-container button {
+  margin-right: 5px;
+}
+#menu-container button:hover,
+#links-container button:hover {
   background-color: #eee;
 }
-#menu-container button:active {
+#menu-container button:active,
+#links-container button:active {
   background-color: #ddd;
 }
 
@@ -185,6 +190,18 @@ button {
 }
 #menu-container button.open i {
   transform: rotate(60deg);
+}
+
+/* Links container */
+#links-container {
+  margin-left: auto;
+  pointer-events: all;
+}
+#links-container a {
+  color: black;
+}
+#links-container a::after {
+  display: none;
 }
 
 /* Legend */
